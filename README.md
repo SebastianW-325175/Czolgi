@@ -1,2 +1,2 @@
 # Czolgi
-Repozytorium na mój prywatny projekt o czołgach
+Immersywna gra o czołgach w estetyce retro.
