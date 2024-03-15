@@ -38,3 +38,22 @@
 	margin: 4px 0px 4px 4px;
 	padding: 0px;
 }
+#leftHandle {
+	filter: drop-shadow(10px 2px 5px rgba(0, 0, 0, 0.5));
+	height: 261px;
+	image-rendering: pixelated;
+	position: absolute;
+	bottom: 0px;
+	left: calc((50vw / 2) - 21px);
+	z-index: 1;
+
+}#rightHandle {
+	filter: drop-shadow(15px 2px 5px rgba(0, 0, 0, 0.5));
+	height: 261px;
+	image-rendering: pixelated;
+	position: absolute;
+	bottom: 0px;
+	right: calc((50vw / 2) - 21px);
+	z-index: 1;
+
+}

@@ -7,4 +7,15 @@ const tank = {
 	rightTrack: 0,
 	sprite: "./assets/czolg.png",
 	size: 108
-}	
+};
+{
+	function updateTracks() {
+	tank.leftTrack = 0;
+	tank.rightTrack = 0;
+	if(keyMemoryMap.get(controlsMapping.leftTrackForwards)) tank.leftTrack += 1;
+	if(keyMemoryMap.get(controlsMapping.leftTrackReverse)) tank.leftTrack += -1;
+	if(keyMemoryMap.get(controlsMapping.rightTrackForwards)) tank.rightTrack += 1;
+	if(keyMemoryMap.get(controlsMapping.rightTrackReverse)) tank.rightTrack += -1;
+	};
+	setInterval(updateTracks, 15)
+}
