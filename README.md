@@ -4,3 +4,4 @@ Immersywna gra o czołgach w estetyce retro.
 Celem tej wersji:
 - Refactoring kodu
 - Dodanie łatwej konfiguralności sterowania
+- Zaimplentowanie podstawowej fizyki czołgu (bezwładność, tarcie, opór)
