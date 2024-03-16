@@ -44,7 +44,7 @@
 	image-rendering: pixelated;
 	position: absolute;
 	bottom: 0px;
-	left: calc((50vw / 2) - 21px);
+	left: calc((50vw / 2) - 36px);
 	z-index: 1;
 
 }#rightHandle {
@@ -53,7 +53,7 @@
 	image-rendering: pixelated;
 	position: absolute;
 	bottom: 0px;
-	right: calc((50vw / 2) - 21px);
+	right: calc((50vw / 2) - 36px);
 	z-index: 1;
 
 }

@@ -13,18 +13,18 @@ const tank = {
 		document.querySelector('body').appendChild(ft17Sprite);
 		ft17Sprite.outerHTML = '<div><img class="ft17" src="./assets/ft17.png"><img class="ft17" src="./assets/ft17_turret.png"></div>'
 	},
-	updateTrack: function() {
+	updateTracks: function() {
 		this.leftTrack = 0;
 		this.rightTrack = 0;
 		if(keyMemoryMap.get(controlsMapping.leftTrackForwards)) this.leftTrack += 1;
-		if(keyMemoryMap.get(controlsMapping.leftTrackReverse)) this.leftTrack += -1;
+		if(keyMemoryMap.get(controlsMapping.leftTrackReverse)) this.leftTrack -= 1;
 		if(keyMemoryMap.get(controlsMapping.rightTrackForwards)) this.rightTrack += 1;
-		if(keyMemoryMap.get(controlsMapping.rightTrackReverse)) this.rightTrack += -1;
+		if(keyMemoryMap.get(controlsMapping.rightTrackReverse)) this.rightTrack -= 1;
 	}
 };
 
 //LOCAL
 {
 	tank.spawn();
-	setInterval(tank.updateTracks, 15)
+	setInterval(function () {tank.updateTracks()}, 15)
 }
