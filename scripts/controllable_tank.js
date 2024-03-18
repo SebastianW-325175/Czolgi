@@ -1,13 +1,18 @@
 //GLOBAL
 const tank = {
-	positionX: 0,
-	positionY: 0,
-	speed: 7,
+	position: [0, 0],
 	rotation: 0,
 	leftTrack: 0,
 	rightTrack: 0,
 	sprite: "./assets/ft17.png",
 	size: 108,
+	physics: {
+		torque: 0,
+		maxTorque: 185,
+		acceleration: 0,
+		speed: 0,
+		maxSpeed: 5.5
+	},
 	spawn: function() {
 		const ft17Sprite = document.createElement('div');
 		document.querySelector('body').appendChild(ft17Sprite);

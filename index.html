@@ -7,29 +7,33 @@
 		<script src="./scripts/keyboardController.js" defer></script>
 		<script src="./scripts/controllable_tank.js" defer></script>
 		<script src="./scripts/driving_handles.js" defer></script>
-		<link rel="stylesheet" href="./stylesheets/styles.css">
+		<link rel="stylesheet" href="./stylesheets/global.css">
+		<link rel="stylesheet" href="./stylesheets/standardUi.css">
+		<link rel="stylesheet" href="./stylesheets/uiElements.css">
 		<link rel="stylesheet" href="./stylesheets/gameObjects.css">
 	</head>
 	<body>
-		<p id="demoTitle">Tank demo v1.1.alpha</p>
-		<div id="instructionsBox"> 
-			<div class="instructionContainer"> 
-				<p class="keyText">Left track forwards</p>
-				<img class="keyIcon" src="./assets/keys/keyQ.png">
-			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Left track reverse</p>
-				<img class="keyIcon" src="./assets/keys/keyA.png">
-			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Right track forwards</p>
-				<img class="keyIcon" src="./assets/keys/keyE.png">
-			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Right track reverse</p>
-				<img class="keyIcon" src="./assets/keys/keyD.png">
+		<div id="UiLayer"><!--Container for UI elements-->
+			<div class="uiBox anchorBottomRight"> <!--Instructions container-->
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Left track forwards</p>
+					<p class="uiKeyIcon">q</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Left track reverse</p>
+					<p class="uiKeyIcon">a</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Right track forwards</p>
+					<p class="uiKeyIcon">e</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Right track reverse</p>
+					<p class="uiKeyIcon">d</p>
+				</div>
 			</div>
 		</div>
+		<p id="demoTitle">Tank demo v1.1.alpha</p>
 		<img id="leftHandle" src="./assets/driving_handles/handle_left_neutral.png">
 		<img id="rightHandle" src="./assets/driving_handles/handle_right_neutral.png">
 	</body>
