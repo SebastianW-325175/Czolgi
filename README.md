@@ -10,3 +10,4 @@ Celem tej wersji:
 - Dodano możliwość zmiany sterowania
 - Rozdzielono kod na kilka plików
 - Dodano działające, animowane drążki sterowania gąsienicami jako element interfejsu
+- Zastąpiono sprite'y klawiszy na takie, działające na bazie CSS
