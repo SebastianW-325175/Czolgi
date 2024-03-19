@@ -20,6 +20,7 @@
 	/*border: 1px solid red;*/
 	background-color: rgba(0, 0, 0, 0.5);
 	width: fit-content;
+	padding: 5px;
 }
 .uiTextContainer {
 	/*border: 1px solid yellow;*/
@@ -54,5 +55,10 @@
 	color: rgba(255, 255, 255, 1);
 	display: inline;
 	font-family: Dogica, serif;
+	margin: 0.35em 0.15em;
 	text-align: right;
+	text-shadow: 0.125em 0.125em 0em rgba(0, 0, 0, 0.75);
+}
+.uiTextSmall {
+	font-size: 0.75em;
 }

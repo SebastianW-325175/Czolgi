@@ -10,11 +10,6 @@ body {
 	width: 100vw;
 	height: 100vh;
 }
-#demoTitle {
-	font-family: Dogica, serif;
-	z-index: 1;
-	position: absolute;
-}
 .keyIcon {
 	display: inline;
 	image-rendering: pixelated;

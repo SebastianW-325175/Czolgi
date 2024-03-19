@@ -7,10 +7,10 @@ const tank = {
 	sprite: "./assets/ft17.png",
 	size: 108,
 	physics: {
-		enginePower: 29000,
 		weight: 6500,
-		acceleration: 0,
 		speed: 0,
+		enginePower: 29000,
+		acceleration: 0,
 		optimalSpeed: 5.5
 	},
 	spawn: function() {

@@ -5,6 +5,7 @@ const controlsMapping = {			//Object defining the controls mapping
 		leftTrackReverse: "a",
 		rightTrackForwards: "e",
 		rightTrackReverse: "d",
+		showDebug: "]"
 };
 
 //LOCAL
