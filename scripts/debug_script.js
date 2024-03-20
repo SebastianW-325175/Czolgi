@@ -1,5 +1,5 @@
 //LOCAL
-{
+/*{
 	const debugBox = document.querySelector("#debugBox");
 	let lastKeyState = false;
 
@@ -23,3 +23,4 @@
 	keyMemoryMap.set(controlsMapping.showDebug, false);	//Workaround to account for the first-ever press
 	setInterval(updateDebugBox, 15);
 }
+*/

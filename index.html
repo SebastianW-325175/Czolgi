@@ -3,43 +3,22 @@
 	<head>
 		<title>Gra o czołgach</title>
 		<meta charset="UTF-8">
+		<script src="./scripts/uiFunctions.js" defer></script>
 		<script src="./scripts/keyboard_controller.js" defer></script>
 		<script src="./scripts/controllable_tank.js" defer></script>
 		<script src="./scripts/driving_handles.js" defer></script>
 		<script src="./scripts/debug_script.js" defer></script>
+		<script src="./scripts/debug_box.js" defer></script>
 		<link rel="stylesheet" href="./stylesheets/global.css">
 		<link rel="stylesheet" href="./stylesheets/standardUi.css">
 		<link rel="stylesheet" href="./stylesheets/uiElements.css">
 		<link rel="stylesheet" href="./stylesheets/gameObjects.css">
 	</head>
 	<body>
-		<div id="UiLayer"><!--Container for UI elements-->
+		<div id="uiLayer"><!--Container for UI elements-->
 			<div id="projectTitle" class="uiBox anchorTopLeft"> <!--Project title container-->
 				<div class="uiTextContainer">
 					<p class="uiText">Tank demo v1.1.alpha</p>
-				</div>
-			</div>
-			<div id="debugBox" class="uiBox anchorTopRight"> <!--Debug info container-->
-				<div class="uiTextContainer">
-					<p class="uiText">Debug information:</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">position: [0,0]</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">rotation: 0</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">leftTrack: 0</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">rightTrack: 0</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">speed: 0</p>
-				</div>
-				<div class="uiTextContainer">
-					<p class="uiText uiTextSmall">acceleration: 0</p>
 				</div>
 			</div>
 			<div id="instructionsBox" class="uiBox anchorBottomRight"> <!--Instructions container-->
