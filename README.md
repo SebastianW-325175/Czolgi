@@ -12,3 +12,4 @@ Celem tej wersji:
 - Dodano działające, animowane drążki sterowania gąsienicami jako element interfejsu
 - Zastąpiono sprite'y klawiszy na takie, działające na bazie CSS
 - Dodano menu z informacjami Debugowymi
+- Dodano funkcję pozwalajacą bardziej efektywne dodawanie prostych elementów interfejsu
