@@ -6,3 +6,10 @@
 	width: 108px;
 	position: absolute;
 }
+#six_meters {
+	image-rendering: pixelated;
+	position: absolute;
+	height: 96px;
+	bottom: calc( 50vh + 40px);
+	left: calc(50vw + 20px);
+}

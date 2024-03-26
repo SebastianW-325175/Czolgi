@@ -8,11 +8,12 @@
 			["rotation", 0],
 			["leftTrack", 0],
 			["rightTrack", 0],
-			["speed", 0],
-			["acceleration", 0]
+			["enginePower", 0],
+			["acceleration", 0],
+			["speed", 0]
 		]),
 		create: function() {
-			this.object.style.display = "none";
+			this.object.style.display = "inline-block";
 			createUiElement("#debugBox", "div", "debugBoxTitleContainer", "uiTextContainer", "", "");
 			createUiElement("#debugBoxTitleContainer", "p", "", "uiText", "", "Debug info");
 			
@@ -27,12 +28,13 @@
 		},
 		updateDebugInfo() {
 			if(this.object.style.display == "inline-block") {							//Update the object properties
-				this.info.set("position", tank.position);				
+				this.info.set("position", [tank.position[0].toFixed(0), tank.position[1].toFixed(0)]);		
 				this.info.set("rotation", tank.rotation);
 				this.info.set("leftTrack", tank.leftTrack);
 				this.info.set("rightTrack", tank.rightTrack);
-				this.info.set("speed", tank.physics.speed);
-				this.info.set("acceleration", tank.physics.acceleration);
+				this.info.set("enginePower", tank.physics.enginePower.toFixed(0));
+				this.info.set("acceleration", tank.physics.acceleration.toFixed(2));
+				this.info.set("speed", tank.physics.speed.toFixed(2));
 			}
 			
 			this.info.forEach(function(value,key) {
