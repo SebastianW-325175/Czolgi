@@ -8,7 +8,11 @@
 			["rotation", 0],
 			["leftTrack", 0],
 			["rightTrack", 0],
+			["clutchEngaged", false],
+			["rpm", 0],
 			["enginePower", 0],
+			["engineTorque", 0],
+			["gearRatio", 0],
 			["acceleration", 0],
 			["speed", 0]
 		]),
@@ -32,9 +36,13 @@
 				this.info.set("rotation", tank.rotation);
 				this.info.set("leftTrack", tank.leftTrack);
 				this.info.set("rightTrack", tank.rightTrack);
+				this.info.set("clutchEngaged", tank.clutchEngaged);
+				this.info.set("rpm", tank.physics.rpm.toFixed(0));
 				this.info.set("enginePower", tank.physics.enginePower.toFixed(0));
+				this.info.set("engineTorque", tank.physics.engineTorque.toFixed(1));
+				this.info.set("gearRatio", tank.physics.gearRatio.toFixed(1));
 				this.info.set("acceleration", tank.physics.acceleration.toFixed(2));
-				this.info.set("speed", tank.physics.speed.toFixed(2));
+				this.info.set("speed", (tank.physics.speed*3.6).toFixed(2)+"km/h");
 			}
 			
 			this.info.forEach(function(value,key) {
@@ -56,5 +64,5 @@
 
 	debugBoxNew.create();
 	keyMemoryMap.set(controlsMapping.showDebug, false);	//Workaround to account for the first-ever press
-	setInterval( function () {debugBoxNew.updateDebugInfo()}, 15);
+	setInterval( function () {debugBoxNew.updateDebugInfo()}, 1000/60);
 }

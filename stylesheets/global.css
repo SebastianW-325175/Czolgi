@@ -27,7 +27,8 @@ body {
 	left: calc((50vw / 2) - 36px);
 	z-index: 1;
 
-}#rightHandle {
+}
+#rightHandle {
 	filter: drop-shadow(15px 2px 5px rgba(0, 0, 0, 0.5));
 	height: 261px;
 	image-rendering: pixelated;
@@ -35,5 +36,4 @@ body {
 	bottom: 0px;
 	right: calc((50vw / 2) - 36px);
 	z-index: 1;
-
 }

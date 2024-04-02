@@ -13,3 +13,10 @@
 	bottom: calc( 50vh + 40px);
 	left: calc(50vw + 20px);
 }
+#soldier {
+	image-rendering: pixelated;
+	position: absolute;
+	height: 21px;
+	bottom: calc( 50vh + 10px);
+	left: calc(50vw - 50px);
+}
