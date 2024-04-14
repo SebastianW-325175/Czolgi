@@ -13,3 +13,6 @@ Celem tej wersji:
 - Zastąpiono sprite'y klawiszy na takie, działające na bazie CSS
 - Dodano menu z informacjami Debugowymi
 - Dodano funkcję pozwalajacą bardziej efektywne dodawanie prostych elementów interfejsu
+
+WAŻNE: Liniowe podnoszenie RPM'ów, powoduje liniowy wzrost prędkości czołgu. Może da się coś z tym zrobić?
+PROBLEM: Nie istnieje siła, która mogłaby spowolnić czołg poruszający się za szybko jak na swoją siłę.

@@ -9,6 +9,7 @@
 			["leftTrack", 0],
 			["rightTrack", 0],
 			["clutchEngaged", false],
+			["state", "brake"],
 			["rpm", 0],
 			["enginePower", 0],
 			["engineTorque", 0],
@@ -33,10 +34,11 @@
 		updateDebugInfo() {
 			if(this.object.style.display == "inline-block") {							//Update the object properties
 				this.info.set("position", [tank.position[0].toFixed(0), tank.position[1].toFixed(0)]);		
-				this.info.set("rotation", tank.rotation);
+				this.info.set("rotation", tank.rotation.toFixed(1));
 				this.info.set("leftTrack", tank.leftTrack);
 				this.info.set("rightTrack", tank.rightTrack);
 				this.info.set("clutchEngaged", tank.clutchEngaged);
+				this.info.set("state", tank.state);
 				this.info.set("rpm", tank.physics.rpm.toFixed(0));
 				this.info.set("enginePower", tank.physics.enginePower.toFixed(0));
 				this.info.set("engineTorque", tank.physics.engineTorque.toFixed(1));

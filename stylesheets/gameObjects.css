@@ -1,4 +1,7 @@
 #ft17Container {
+	height: 108px;
+	width: 108px;
+	transform-origin: center;
 	position: absolute;
 }
 .ft17 {
