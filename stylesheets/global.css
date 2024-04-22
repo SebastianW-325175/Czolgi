@@ -2,8 +2,15 @@
 	font-family: "Dogica";
 	src: url("../assets/fonts/dogicapixel.ttf");
 }
+@font-face {
+	font-family: "Alstoria";
+	src: url("../assets/fonts/alstoria.ttf");
+}
+* {
+	cursor: inherit;
+}
 body {
-	margin: 0px;
+	margin: 0px
 }
 #UiLayer {
 	position: absolute;

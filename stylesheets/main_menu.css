@@ -1,0 +1,54 @@
+body{
+	background-image: url(../assets/tankers.png);
+	background-repeat: no-repeat;
+	background-position: bottom 100%;
+	background-size: cover;
+	image-rendering: pixelated;
+	height: 100vh;
+	width: 100vw;
+	margin: 0px;
+}
+#menu_wrapper{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: fit-content;
+	margin-left: 7.5vw;
+}
+#game_logo{
+	width: 270px;
+	margin-bottom: 12px;
+}
+.button{
+	background-color: rgba(0, 0, 0, 0);
+	border: 0px;
+	image-rendering: pixelated;
+	width: 246px;
+	height: 66px;
+	margin: 3px;
+}
+.button:focus{
+	outline: 0pxw;
+}
+#play_demo_button{
+	background: no-repeat center/100% url(../assets/buttons/play_button.png);
+}
+#play_demo_button:hover{
+	outline: 0px;
+	background: no-repeat center/100% url(../assets/buttons/play_button_highlighted.png);
+}
+#settings_button{
+	background: no-repeat center/100% url(../assets/buttons/settings_button.png);
+}
+#settings_button:hover{
+	outline: 0px;
+	background: no-repeat center/100% url(../assets/buttons/settings_button_highlighted.png);
+}
+#about_button{
+	background: no-repeat center/100% url(../assets/buttons/about_button.png);
+}
+#about_button:hover{
+	outline: 0px;
+	background: no-repeat center/100% url(../assets/buttons/about_button_highlighted.png);
+}

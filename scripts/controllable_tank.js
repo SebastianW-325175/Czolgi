@@ -69,7 +69,7 @@ const tank = {
 	moveTank: function(){		
 		switch(this.state){
 		case "drive":
-			this.drive();
+			this.drive(1);
 			break;
 		case "brake":
 			this.brake(0.75);
@@ -100,7 +100,7 @@ const tank = {
 			break;
 		}
 	},
-	drive: function(){
+	drive: function(multiplier){
 		let tractionForce = (this.physics.engineTorque*this.physics.gearRatio)/this.physics.sprocketRadius;
 		this.physics.acceleration = tractionForce/this.physics.weight;
 		this.physics.speed += this.physics.acceleration*(1/60);
