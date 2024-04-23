@@ -1,6 +1,6 @@
 # Czolgi
 Immersywna gra o czołgach w estetyce retro.
-## Wersja v1.1.alpha
+## Wersja v1.1.0
 Celem tej wersji:
 - Refactoring kodu
 - Dodanie łatwej konfiguralności sterowania
