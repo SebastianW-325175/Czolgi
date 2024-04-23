@@ -8,13 +8,9 @@
 			["rotation", 0],
 			["leftTrack", 0],
 			["rightTrack", 0],
-			["clutchEngaged", false],
 			["state", "brake"],
 			["rpm", 0],
-			["enginePower", 0],
-			["engineTorque", 0],
-			["gearRatio", 0],
-			["acceleration", 0],
+			["gear", 0],
 			["speed", 0]
 		]),
 		create: function() {
@@ -37,13 +33,9 @@
 				this.info.set("rotation", tank.rotation.toFixed(1));
 				this.info.set("leftTrack", tank.leftTrack);
 				this.info.set("rightTrack", tank.rightTrack);
-				this.info.set("clutchEngaged", tank.clutchEngaged);
 				this.info.set("state", tank.state);
 				this.info.set("rpm", tank.physics.rpm.toFixed(0));
-				this.info.set("enginePower", tank.physics.enginePower.toFixed(0));
-				this.info.set("engineTorque", tank.physics.engineTorque.toFixed(1));
-				this.info.set("gearRatio", tank.physics.gearRatio.toFixed(1));
-				this.info.set("acceleration", tank.physics.acceleration.toFixed(2));
+				this.info.set("gear", tank.physics.gear);
 				this.info.set("speed", (tank.physics.speed*3.6).toFixed(2)+"km/h");
 			}
 			

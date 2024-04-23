@@ -8,15 +8,19 @@ const tank = {
 	sprite: "./assets/ft17.png",
 	size: 108,
 	physics: {
-		sprocketRadius: 0.335,	//Meters
-		weight: 6500,			//Kilograms
-		rpm: 0,
-		gearRatio: 114.5,
-		enginePower: 0,			//Watts
-		engineTorque: 0,		//Newton meters
-		acceleration: 0,		//Meters per second squared
-		speed: 0,				//Meters per second
-		maxSpeed : 0,			//Meters per second
+		wheelCircumference: 2.2,
+		weight: 6500,
+		rpm: 500,
+		speed: 0,
+		gear: 0,
+		gearbox: {
+			gears: 4,
+			reverse: -114.5,
+			first: 114.5,
+			second: 56.3,
+			third: 34.5,
+			fourth: 22.3
+		}
 	},
 	spawn: function(){
 		const ft17Sprite = document.createElement("div");
@@ -43,82 +47,158 @@ const tank = {
 	},
 	updatePosition: function(){
 		const ft17SpriteContainer = document.querySelector("#ft17Container");
-		this.position[0] += (this.physics.speed*Math.sin(this.rotation*Math.PI/180))*15*(1/60);
-		this.position[1] += (this.physics.speed*Math.cos(this.rotation*Math.PI/180))*15*(1/60);
 		ft17SpriteContainer.style.left = "calc(50vw - "+this.size/2+"px + "+this.position[0]+"px )";
 		ft17SpriteContainer.style.bottom = "calc(50vh - "+this.size/2+"px + "+this.position[1]+"px )";
 		ft17SpriteContainer.style.transform = "rotate("+this.rotation+"deg)";
+		this.position[0] += (this.physics.speed*Math.sin(this.rotation*Math.PI/180))*15*(1/60);
+		this.position[1] += (this.physics.speed*Math.cos(this.rotation*Math.PI/180))*15*(1/60);
 	},
-	updateEngine: function(){
-		if(this.state != "brake"){
-			if(this.physics.rpm == 0) this.physics.rpm = 1000;
-			if(this.physics.rpm<2000) this.physics.rpm += -4/1000000*Math.pow(this.physics.rpm, 2) + 8/1000*this.physics.rpm;
-			//if(this.leftTrack != this.rightTrack && this.physics.rpm>1300) this.physics.rpm = 1300;
-			this.physics.enginePower = -(1/12.4)*(Math.pow(this.physics.rpm-1400, 2))+29000;
-			if(this.physics.enginePower<0) this.physics.enginePower = 0;
-			this.physics.gearRatio = (this.physics.rpm/21.7)*(-1) + 114.5;
-			this.physics.engineTorque = this.physics.enginePower/this.physics.rpm;
-		}else{
-			this.physics.rpm = 0;
-			this.physics.enginePower = 0;
-			this.physics.gearRatio = 114.5;
-			this.physics.engineTorque = 0;
-			this.physics.maxSpeed = 0;
-		}
-	},
-	moveTank: function(){		
+	updateEngine: function(){		
 		switch(this.state){
 		case "drive":
-			this.drive();
+			switch(this.physics.gear){
+			case -1:
+				this.brake(0.4);
+				if(this.physics.speed >= 0){
+					this.physics.gear = 0;
+					this.physics.rpm = 500
+				};
+				break;
+			case 0:
+				this.throttle(12);
+				if(this.physics.rpm > 550){
+					this.physics.gear = 1;
+				};
+				break;
+			case 1:
+				this.throttle(10);
+				this.drive(this.physics.gearbox.first);
+				if(this.physics.rpm > 750){
+					this.physics.gear = 2;
+					this.physics.rpm = 550;
+				};
+				break;
+			case 2:
+				this.throttle(8);
+				this.drive(this.physics.gearbox.second);
+				if(this.physics.rpm > 750){
+					this.physics.gear = 3;
+					this.physics.rpm = 550;
+				};
+				break;
+			case 3:
+				this.throttle(6);
+				this.drive(this.physics.gearbox.third);
+				if(this.physics.rpm > 750){
+					this.physics.gear = 4;
+					this.physics.rpm = 550;
+				};
+				break;
+			case 4:
+				this.throttle(4);
+				this.drive(this.physics.gearbox.fourth);
+				break;
+			}
 			break;
 		case "brake":
-			this.brake(0.75);
+			this.physics.gear = 0;
+			this.physics.rpm = 500;
+			this.brake(0.4);
 			break;
 		case "reverse":
+			if(this.physics.speed > 0 && this.physics.gear != -1){
+				this.brake(0.4);
+			}else{
+				this.physics.gear = -1;
+				this.throttle(10);
+				this.drive(this.physics.gearbox.reverse);
+			};
 			break;
 		case "rightTurnForward":
-			this.turn(1, 1.4);
-			this.drive();
+			if(this.physics.speed > (1250/this.physics.gearbox.first*this.physics.wheelCircumference)/60){
+				this.brake(0.1);
+				this.turn(this.physics.speed, 0.5, 1.6);
+			}else{
+				this.physics.gear = 1;
+				this.throttle(10);
+				this.turn(this.physics.speed, 1, 1.6);
+				this.drive(this.physics.gearbox.first);
+			};
 			break;
 		case "leftTurnForward":
-			this.turn(1, -1.4);
-			this.drive();
+			if(this.physics.speed > (1250/this.physics.gearbox.first*this.physics.wheelCircumference)/60){
+				this.brake(0.1);
+				this.turn(this.physics.speed, 0.5, -1.6);
+			}else{
+				this.physics.gear = 1;
+				this.throttle(10);
+				this.turn(this.physics.speed, 1, -1.6);
+				this.drive(this.physics.gearbox.first);
+			};
 			break;
 		case "rightTurnReverse":
-			this.turn(1, -1.4);
+			if(this.physics.speed > 0 && this.physics.gear != -1){
+				this.brake(0.4);
+				this.turn(this.physics.speed, 1, 1.6);
+			}else{
+				this.physics.gear = -1;
+				this.throttle(10);
+				this.turn(this.physics.speed, 1, 1.6);
+				this.drive(this.physics.gearbox.reverse);
+			};
 			break;
 		case "leftTurnReverse":
-			this.turn(1, 1.4);
+			if(this.physics.speed > 0 && this.physics.gear != -1){
+				this.brake(0.4);
+				this.turn(this.physics.speed, 1, -1.6);
+			}else{
+				this.physics.gear = -1;
+				this.throttle(10);
+				this.turn(this.physics.speed, 1, -1.6);
+				this.drive(this.physics.gearbox.reverse);
+			};
 			break;
 		case "rotateRight":
-			this.drive();
-			this.turn(1, 0.2);
+			if(this.physics.speed > (1250/this.physics.gearbox.first*this.physics.wheelCircumference)/60){
+				this.brake(0.1);
+			}else{
+				this.physics.gear = 1;
+				this.throttle(10);
+				this.turn((this.physics.rpm/this.physics.gearbox.first*this.physics.wheelCircumference)/60, 1, 1);
+			}
 			break;
 		case "rotateLeft":
-			this.drive();
-			this.turn(1, -0.2);
+			if(this.physics.speed > (1250/this.physics.gearbox.first*this.physics.wheelCircumference)/60){
+				this.brake(0.1);
+			}else{
+				this.physics.gear = 1;
+				this.throttle(10);
+				this.turn((this.physics.rpm/this.physics.gearbox.first*this.physics.wheelCircumference)/60, 1, -1);
+			}
 			break;
 		}
 	},
-	drive: function(){
-		let tractionForce = (this.physics.engineTorque*this.physics.gearRatio)/this.physics.sprocketRadius;
-		this.physics.acceleration = tractionForce/this.physics.weight;
-		this.physics.speed += this.physics.acceleration*(1/60);
+	throttle: function(coefficient){
+		if(this.physics.rpm<1250) this.physics.rpm += -coefficient/1562500*Math.pow(this.physics.rpm, 2) + coefficient;
 	},
-	brake: function(frictionCoef){
-		let brakingForce = this.physics.weight*9.81*frictionCoef;
-
-		this.physics.speed -= (brakingForce/this.physics.weight)*(1/60);
-		if(this.physics.speed<0){
+	drive: function(gearRatio){
+		this.physics.speed = (this.physics.rpm/gearRatio*this.physics.wheelCircumference)/60
+	},
+	brake: function(coefficient){
+		const brakingForce = this.physics.weight*9.81*coefficient;
+		if(brakingForce/this.physics.weight/60 > Math.abs(this.physics.speed)){
+			this.physics.rpm = 0;
 			this.physics.speed = 0;
-			this.physics.acceleration = 0;
-		};
+		}else if(this.physics.speed>0){
+			this.physics.speed -= brakingForce/this.physics.weight/60;
+		}else{
+			this.physics.speed += brakingForce/this.physics.weight/60
+		}
 	},
-	turn: function(speedPerc, turnCircRad){
-		this.physics.gearRatio = 22.3
-		circleCircumference = 2*Math.PI*turnCircRad;
-		lapTime = circleCircumference/this.physics.speed;
-		angleRotated = 360*(1/60)/lapTime;
+	turn: function(speed, speedPerc, turnCircRad){
+		const turnCircumference = 2*Math.PI*turnCircRad;
+		const distanceTravelled = speed*speedPerc/60;
+		const angleRotated = 360/(turnCircumference/distanceTravelled);
 		this.rotation += angleRotated;
 	}
 };
@@ -127,9 +207,8 @@ const tank = {
 {
 	function updateTank() {
 		tank.updateState();
-		tank.updateEngine();
 		tank.updatePosition();
-		tank.moveTank();
+		tank.updateEngine();
 	};
 	tank.spawn();
 	setInterval(function () {updateTank()}, 1000/60)
