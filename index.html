@@ -3,28 +3,49 @@
 	<head>
 		<title>Gra o czołgach</title>
 		<meta charset="UTF-8">
-		<script src="./scripts/tank.js" defer></script>
-		<link rel="stylesheet" href="styles.css">
+		<script src="./scripts/uiFunctions.js" defer></script>
+		<script src="./scripts/keyboard_controller.js" defer></script>
+		<script src="./scripts/controllable_tank.js" defer></script>
+		<script src="./scripts/driving_handles.js" defer></script>
+		<script src="./scripts/debug_box.js" defer></script>
+		<link rel="stylesheet" href="./stylesheets/global.css">
+		<link rel="stylesheet" href="./stylesheets/standardUi.css">
+		<link rel="stylesheet" href="./stylesheets/uiElements.css">
+		<link rel="stylesheet" href="./stylesheets/gameObjects.css">
 	</head>
 	<body>
-		<p id="demoTitle">Tank steering demo v1.0</p>
-		<div id="instructionsBox"> 
-			<div class="instructionContainer"> 
-				<p class="keyText">Left track forwards</p>
-				<img class="keyIcon" src="./assets/keys/keyQ.png">
+		<div id="uiLayer"><!--Container for UI elements-->
+			<div id="projectTitle" class="uiBox anchorTopLeft"> <!--Project title container-->
+				<div class="uiTextContainer">
+					<p class="uiText">Tank demo v1.1.alpha</p>
+				</div>
 			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Left track reverse</p>
-				<img class="keyIcon" src="./assets/keys/keyA.png">
-			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Right track forwards</p>
-				<img class="keyIcon" src="./assets/keys/keyE.png">
-			</div>
-			<div class="instructionContainer"> 
-				<p class="keyText">Right track reverse</p>
-				<img class="keyIcon" src="./assets/keys/keyD.png">
+			<div id="instructionsBox" class="uiBox anchorBottomRight"> <!--Instructions container-->
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Left track forwards</p>
+					<p class="uiKeyIcon">q</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Left track reverse</p>
+					<p class="uiKeyIcon">a</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Right track forwards</p>
+					<p class="uiKeyIcon">e</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Right track reverse</p>
+					<p class="uiKeyIcon">d</p>
+				</div>
+				<div class="uiTextContainer"> 
+					<p class="uiText instructionsText">Open/close debug box</p>
+					<p class="uiKeyIcon">]</p>
+				</div>
 			</div>
 		</div>
+		<img id="six_meters" src="./assets/6_meters.png">
+		<img id="soldier" src="./assets/soldier.png">
+		<img id="leftHandle" src="./assets/steering/handle_left_neutral.png">
+		<img id="rightHandle" src="./assets/steering/handle_right_neutral.png">
 	</body>
 </html>

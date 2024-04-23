@@ -1,0 +1,7 @@
+.instructionsText {
+	margin: 0em 0.25em;
+}
+.instructionsIcon {
+	height: 2em;
+	image-rendering: pixelated;
+}

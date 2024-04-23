@@ -1,0 +1,64 @@
+.anchorTopLeft {
+	float: left;
+	margin: 8px;
+}
+.anchorTopRight {
+	float: right;
+	margin: 8px;
+}
+.anchorBottomLeft {
+	position: absolute;
+	bottom: 8px;
+	left: 8px;
+}
+.anchorBottomRight {
+	position: absolute;
+	bottom: 8px;
+	right: 8px;
+}
+.uiBox {
+	/*border: 1px solid red;*/
+	background-color: rgba(0, 0, 0, 0.5);
+	width: fit-content;
+	padding: 5px;
+}
+.uiTextContainer {
+	/*border: 1px solid yellow;*/
+	align-items: center;
+	display: flex;
+	justify-content: right;
+}
+.uiTextIcon {
+	/*border: 1px solid purple;*/
+	display: inline-block;
+	image-rendering: pixelated;
+}
+.uiKeyIcon {
+	align-items: center;
+	background-color: #d4d0c5;
+	border: 0.1em solid black;
+	border-radius: 0.3em;
+	box-shadow: inset 0.15em 0.15em #f2f0e9, inset -0.15em -0.15em #857d71;
+	color: #2b2823;
+	display: flex;
+	font-family: Dogica, serif;
+	font-weight: bold;
+	font-size: 1.25em;
+	height: 1.6em;
+	justify-content: center;
+	margin: 0.1em;
+	min-width: 0.9em;
+	padding: 0em 0.35em;
+}
+.uiText {
+	/*border: 1px solid green;*/
+	color: rgba(255, 255, 255, 1);
+	display: inline;
+	font-family: Dogica, serif;
+	margin: 0.35em 0.15em;
+	text-align: right;
+	text-shadow: 0.125em 0.125em 0em rgba(0, 0, 0, 0.75);
+}
+.uiTextSmall {
+	font-size: 0.75em;
+}
