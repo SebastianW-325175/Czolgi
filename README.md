@@ -1,16 +1,6 @@
 # Czolgi
 Immersywna gra o czołgach w estetyce retro.
-## Wersja v1.1.0
-Celem tej wersji:
-- Refactoring kodu
-- Dodanie łatwej konfiguralności sterowania
-- Zaimplentowanie podstawowej fizyki czołgu (bezwładność, tarcie, opór)
+## Wersja v1.2.0
+Celem tej wersji jest:
+- Zmiana systemu renderowania z elementów HTML na Canvas
 ## Changelog:
-- Przepisano od podstaw cały kod Javascript z poprzedniej wersji, aby był szybszy i bardziej czytelny
-- Dodano możliwość zmiany sterowania
-- Rozdzielono kod na kilka plików
-- Dodano działające, animowane drążki sterowania gąsienicami jako element interfejsu
-- Zastąpiono sprite'y klawiszy na takie, działające na bazie CSS
-- Dodano menu z informacjami Debugowymi
-- Dodano funkcję pozwalajacą bardziej efektywne dodawanie prostych elementów interfejsu
-- Dodano ulepszoną fizykę jazdy
