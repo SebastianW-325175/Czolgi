@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"rectFadeou",
+				"rectFadeOut4"
+			],
+			[
+				"rectAdeO",
+				"rectFadeOut4"
+			],
+			[
+				"text21",
+				"text21Disappear"
+			],
+			[
+				"current",
+				"currentTime"
+			],
+			[
+				"overlay",
+				"overlayLayer"
+			],
+			[
+				"newAnim",
+				"newAnimationObject"
+			],
+			[
+				"madeB",
+				"madeByDisappear"
+			],
+			[
+				"madeb",
+				"madeByDisappear"
+			],
+			[
+				"rectFade",
+				"rectFadeOutForever"
+			],
+			[
+				"overy",
+				"overlayRect"
+			],
+			[
+				"backgroun",
+				"backgroundColor"
+			],
+			[
+				"define",
+				"defineRect"
+			],
+			[
+				"rende",
+				"renderObject"
+			],
+			[
+				"render",
+				"renderQueue"
+			],
+			[
+				"background",
+				"backgroundColor"
+			],
+			[
+				"back",
+				"backgroundColor"
+			],
+			[
+				"backro",
+				"backgroundColor"
+			],
+			[
 				"turn",
 				"turnCircRad"
 			],
@@ -66,10 +134,6 @@
 			[
 				"ser",
 				"sans-serif"
-			],
-			[
-				"back",
-				"background-color"
 			],
 			[
 				"lef",
@@ -182,18 +246,38 @@
 	[
 		"/home/sebastian/Dokumenty/Czolgi",
 		"/home/sebastian/Dokumenty/Czolgi/scripts",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes"
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/animationEngine",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/mainMenu",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets"
 	],
 	"file_history":
 	[
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets/global.css",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/renderObjectClass.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/mainMenu/scene.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/game_renderer.js",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/main_menu.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/9_slice_lib.js",
+		"/home/sebastian/Dokumenty/Czolgi/FT.html",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/renderLayerClass.js",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/controllable_tank.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/animationEngine/animation_class.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/intro_cutscene.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/MainMenu/scene.js",
+		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/themes/ITS Theme/theme.css",
+		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/plugins/obsidian-style-settings/data.json",
+		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/themes/ITS Theme/manifest.json",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/main_menu.js",
+		"/home/sebastian/Dokumenty/Czolgi/FT.sublime-workspace",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/made_by.js",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets/global.css",
 		"/home/sebastian/Dokumenty/Czolgi/index.html",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/click_event_handler.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/hover_event_handler.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/cursorInRectLib.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/hoverEventHandler/hover_event_handler.js",
+		"/home/sebastian/Dokumenty/Czolgi/main_menu.html",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/controllable_tank.js",
 		"/home/sebastian/Dokumenty/Czolgi/.sublime-project",
 		"/home/sebastian/Dokumenty/Czolgi/untitled.json",
 		"/home/sebastian/config",
@@ -220,10 +304,7 @@
 		"/home/sebastian/Dokumenty/Projekty HTML/SEM II/pongpong/styles.css",
 		"/home/sebastian/Dokumenty/Projekty HTML/SEM II/pongpong/ex.js",
 		"/home/sebastian/Dokumenty/Projekty HTML/SEM II/pongpong/ex.js.js",
-		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/themes/ITS Theme/theme.css",
-		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/themes/ITS Theme/manifest.json",
 		"/home/sebastian/Dokumenty/Czolgi/stylesheets/main_menu.css",
-		"/home/sebastian/Dokumenty/Czolgi/main_menu.html",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/cursor_effects.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/uiFunctions.js",
 		"/home/sebastian/Pobrane/eduroam-linux-UMK-Student.py",
@@ -301,24 +382,11 @@
 		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/CustomNpcs.cfg",
 		"/home/sebastian/Pobrane/README.md",
 		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/survivalinc.cfg",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/RPG-HUD/settings.cfg",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/ignitehud.cfg",
-		"/home/sebastian/.themes/Sweet-Ambar-Blue-Dark-v40/gtk-4.0/gtk-dark.css",
-		"/home/sebastian/Pobrane/kod_filipa.c",
-		"/home/sebastian/Pobrane/daneRzutu.csv",
-		"/home/sebastian/Rzut_ukośny.c",
-		"/home/sebastian/Pobrane/message.txt",
-		"/home/sebastian/katalog.sh",
-		"/home/sebastian/kalkulator.sh",
-		"/home/sebastian/info.sh",
-		"/home/sebastian/wykresy.c",
-		"/home/sebastian/Zapis_do_pliku_2.c",
-		"/home/sebastian/100-1-45-025.csv",
-		"/home/sebastian/Dokumenty/HTML/OPSS Nowy/index.html"
+		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/RPG-HUD/settings.cfg"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -332,6 +400,23 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"defineText",
+			"url(\"data:image/png",
+			"url(\"data:image/",
+			"url(\"data:image/png",
+			"url(\"data:image",
+			"vault-icon-image",
+			"vault-icon",
+			"url()",
+			"vault-icon",
+			"vault image",
+			"Lobster",
+			"Oleo",
+			"Cinzel",
+			"dogica",
+			"chain",
+			"overlay",
+			"Color",
 			"turtle.h",
 			"event",
 			"brak",

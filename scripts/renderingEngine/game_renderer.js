@@ -3,6 +3,13 @@
 const rendererObject = {
 	renderQueue: [],
 	context: undefined,
+	intervalID: undefined,
+	clear: function(){
+		this.renderQueue = [];
+		clearInterval(this.intervalID);
+		this.intervalID = undefined
+		this.render();
+	},
 	render: function(){
 		let renderer = this;
 		let canvasWidth = this.context.canvas.width;
@@ -12,6 +19,11 @@ const rendererObject = {
 		this.renderQueue.forEach(function(queueElement){
 			renderer.handleLayer(queueElement);
 		})
+	},
+	renderLoop: function(){
+		if(this.intervalID == undefined){
+			this.intervalID = setInterval(()=>{rendererObject.render()},  1000/60)
+		}
 	},
 	handleLayer: function(layerObject){
 		let renderer = this;
@@ -29,15 +41,37 @@ const rendererObject = {
 	handleObject: function(object){
 		switch(object.type){
 		case "rect":
+			object.updateColorOpacity();
 			this.context.fillStyle = object.color;
 			this.context.fillRect(object.x, object.y, object.width, object.height);
 			break;
 		case "img":
+			object.updateColorOpacity();
 			this.context.drawImage(object.img, object.x, object.y);
+			break;
+		case "text":
+			object.updateColorOpacity();
+			this.context.font = object.font;
+			this.context.fillStyle = object.color;
+			this.context.textAlign = object.textAlign;
+			this.context.fillText(object.text, object.x, object.y);
+			break;
+		case "9sliceBox":
+			render9slice(object, this.context);
 			break;
 		default:
 			console.log("[INTERNAL ERROR]: Unknown renderObject type \""+object.type+"\" of object \""+object.id+"\"");
 			break;
+		}
+	},
+	newLayer: function(id, objects){
+		const newLayer = new renderLayer(id, objects);
+		this.renderQueue.push(newLayer);
+		return newLayer;
+	},
+	getLayer: function(id){
+		for(let i=0; i<this.renderQueue.length; i++){
+			if(this.renderQueue[i].id == id) return this.renderQueue[i];
 		}
 	}
 }
@@ -76,5 +110,5 @@ const rendererObject = {
 
 	updateCanvasSize();
 	window.addEventListener("resize", updateCanvasSize);
-	setInterval(()=>{rendererObject.render()},  1000/60)
+	rendererObject.intervalID = setInterval(()=>{rendererObject.render()},  1000/60)
 }
