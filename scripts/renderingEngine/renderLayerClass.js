@@ -1,5 +1,6 @@
 class renderLayer {
 	id;
+	offsetEnabled = false;
 	renderObjects = [];
 	subLayers = [];
 	constructor(id, renderObjects, subLayers){
@@ -19,5 +20,9 @@ class renderLayer {
 	};
 	addObject(object){
 		this.renderObjects.push(object);
+	}
+	enableOffset(variable){
+		if(variable != undefined) this.offsetEnabled = variable;
+		else this.offsetEnabled = true;
 	}
 }

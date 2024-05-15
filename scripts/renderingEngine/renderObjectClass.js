@@ -4,7 +4,10 @@ class renderObject {
 	color;
 	opacity;
 	img;
+	imgComponents = [];
 	text;
+	shadowColor;
+	shadowSize;
 	textAlign;
 	x;
 	y;
@@ -50,16 +53,45 @@ class renderObject {
 		this.x = x;
 		this.y = y;
 	};
+	defineTextShadow(shadowColor, shadowSize){
+		this.shadowColor = shadowColor;
+		this.shadowSize = shadowSize;
+	};
 	define9sliceBox(x, y, width, height){
-		const middleTexture = new Image();
-		middleTexture.src = "./assets/ui/9slice/middle.png";
-		middleTexture.addEventListener("load", ()=>{
-			this.img = middleTexture;
-		});
+		if(width<32) this.width = 32;
+		else this.width = width;
+		if(height<32) this.height = 32;
+		else this.height = height;
 		this.x = x;
 		this.y = y;
-		this.width = width;
-		this.height = height;
+
+		const topLeftComponent = new Image();
+		topLeftComponent.src = "./assets/ui/9slice/top_left.png";
+		topLeftComponent.addEventListener("load", ()=>{this.imgComponents[0] = topLeftComponent});
+		const topComponent = new Image();
+		topComponent.src = "./assets/ui/9slice/top.png";
+		topComponent.addEventListener("load", ()=>{this.imgComponents[1] = topComponent});
+		const topRightComponent = new Image();
+		topRightComponent.src = "./assets/ui/9slice/top_right.png";
+		topRightComponent.addEventListener("load", ()=>{this.imgComponents[2] = topRightComponent});
+		const leftComponent = new Image();
+		leftComponent.src = "./assets/ui/9slice/left.png";
+		leftComponent.addEventListener("load", ()=>{this.imgComponents[3] = leftComponent});
+		const middleComponent = new Image();
+		middleComponent.src = "./assets/ui/9slice/middle.png";
+		middleComponent.addEventListener("load", ()=>{this.imgComponents[4] = middleComponent});
+		const rightComponent = new Image();
+		rightComponent.src = "./assets/ui/9slice/right.png";
+		rightComponent.addEventListener("load", ()=>{this.imgComponents[5] = rightComponent});
+		const bottomLeftComponent = new Image();
+		bottomLeftComponent.src = "./assets/ui/9slice/bottom_left.png";
+		bottomLeftComponent.addEventListener("load", ()=>{this.imgComponents[6] = bottomLeftComponent});
+		const bottomComponent = new Image();
+		bottomComponent.src = "./assets/ui/9slice/bottom.png";
+		bottomComponent.addEventListener("load", ()=>{this.imgComponents[7] = bottomComponent});
+		const bottomRightComponent = new Image();
+		bottomRightComponent.src = "./assets/ui/9slice/bottom_right.png";
+		bottomRightComponent.addEventListener("load", ()=>{this.imgComponents[8] = bottomRightComponent});
 	};
 	updateColorOpacity(){
 		if(this.opacity != undefined) this.color = this.color.split("/")[0]+"/ "+this.opacity+"\)";

@@ -4,6 +4,13 @@ const rendererObject = {
 	renderQueue: [],
 	context: undefined,
 	intervalID: undefined,
+	camera: {
+		position: [0,0],
+		zoom: 1,
+		enabled: false,
+		offsetX: 0,
+		offsetY: 0
+	},
 	clear: function(){
 		this.renderQueue = [];
 		clearInterval(this.intervalID);
@@ -14,6 +21,9 @@ const rendererObject = {
 		let renderer = this;
 		let canvasWidth = this.context.canvas.width;
 		let canvasHeight = this.context.canvas.height;
+
+		this.camera.offsetX = (-this.camera.position[0])+160;
+		this.camera.offsetY = (-this.camera.position[1])+90;
 
 		this.context.clearRect(0, 0, canvasWidth, canvasHeight);
 		this.renderQueue.forEach(function(queueElement){
@@ -28,8 +38,8 @@ const rendererObject = {
 	handleLayer: function(layerObject){
 		let renderer = this;
 		if(layerObject.renderObjects.length > 0){
-			layerObject.renderObjects.forEach(function(layerElement){
-				renderer.handleObject(layerElement);
+			layerObject.renderObjects.forEach(function(layerElement, offsetEnabled){
+				renderer.handleObject(layerElement, layerObject.offsetEnabled);
 			})
 		};
 		if(layerObject.subLayers.length > 0){
@@ -38,23 +48,52 @@ const rendererObject = {
 			})
 		}
 	},
-	handleObject: function(object){
+	handleObject: function(object, offsetEnabled){
+		this.context.save();
+		if(offsetEnabled){
+			this.context.scale(this.camera.zoom, this.camera.zoom);
+			this.context.translate(
+				((320-(320/this.camera.zoom))/2)*-1,
+				((180-(180/this.camera.zoom))/2)*-1
+			);
+		}
 		switch(object.type){
 		case "rect":
 			object.updateColorOpacity();
 			this.context.fillStyle = object.color;
-			this.context.fillRect(object.x, object.y, object.width, object.height);
+			this.context.fillRect(
+				object.x+(this.camera.offsetX*offsetEnabled),
+				object.y+(this.camera.offsetY*offsetEnabled),
+				object.width,
+				object.height
+			);
 			break;
 		case "img":
 			object.updateColorOpacity();
-			this.context.drawImage(object.img, object.x, object.y);
+			this.context.drawImage(
+				object.img, 
+				object.x+(this.camera.offsetX*offsetEnabled), 
+				object.y+(this.camera.offsetY*offsetEnabled)
+			);
 			break;
 		case "text":
 			object.updateColorOpacity();
 			this.context.font = object.font;
-			this.context.fillStyle = object.color;
 			this.context.textAlign = object.textAlign;
-			this.context.fillText(object.text, object.x, object.y);
+			if(object.shadowColor != undefined){
+				this.context.fillStyle = object.shadowColor;
+				this.context.fillText(
+					object.text, 
+					object.x+(this.camera.offsetX*offsetEnabled), 
+					object.y+object.shadowSize+(this.camera.offsetY*offsetEnabled)
+				);
+			}
+			this.context.fillStyle = object.color;
+			this.context.fillText(
+				object.text, 
+				object.x+(this.camera.offsetX*offsetEnabled), 
+				object.y+(this.camera.offsetY*offsetEnabled)
+			);
 			break;
 		case "9sliceBox":
 			render9slice(object, this.context);
@@ -63,6 +102,7 @@ const rendererObject = {
 			console.log("[INTERNAL ERROR]: Unknown renderObject type \""+object.type+"\" of object \""+object.id+"\"");
 			break;
 		}
+		this.context.restore();
 	},
 	newLayer: function(id, objects){
 		const newLayer = new renderLayer(id, objects);
@@ -110,5 +150,5 @@ const rendererObject = {
 
 	updateCanvasSize();
 	window.addEventListener("resize", updateCanvasSize);
-	rendererObject.intervalID = setInterval(()=>{rendererObject.render()},  1000/60)
+	rendererObject.intervalID = setInterval(()=>{rendererObject.render()}, 1000/60)
 }

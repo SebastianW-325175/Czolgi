@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"sprite",
+				"spriteOffset"
+			],
+			[
+				"placehol",
+				"placeholderText"
+			],
+			[
+				"backgroud",
+				"backgroundLayer"
+			],
+			[
+				"backgroun",
+				"backgroundLayer"
+			],
+			[
+				"offs",
+				"offsetEnabled"
+			],
+			[
+				"overlay",
+				"overlayRect"
+			],
+			[
+				"aboutBoxLay",
+				"aboutBoxLayerIndex"
+			],
+			[
+				"overlayLa",
+				"overlayLayerIndex"
+			],
+			[
 				"rectFadeou",
 				"rectFadeOut4"
 			],
@@ -18,10 +50,6 @@
 			[
 				"current",
 				"currentTime"
-			],
-			[
-				"overlay",
-				"overlayLayer"
 			],
 			[
 				"newAnim",
@@ -42,10 +70,6 @@
 			[
 				"overy",
 				"overlayRect"
-			],
-			[
-				"backgroun",
-				"backgroundColor"
 			],
 			[
 				"define",
@@ -246,23 +270,37 @@
 	[
 		"/home/sebastian/Dokumenty/Czolgi",
 		"/home/sebastian/Dokumenty/Czolgi/scripts",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/gameEngine",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/animationEngine",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/mainMenu",
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets"
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/tutorialSequence",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/tutorialSequence/part1"
 	],
 	"file_history":
 	[
-		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/renderObjectClass.js",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/mainMenu/scene.js",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/game_renderer.js",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/9_slice_lib.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/gameEngine/game_engine.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/gameEngine/game_object_class.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/controllable_tank.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/tutorialSequence/part1/scene.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/gameEngine/keyboard_controller.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/click_event_handler.js",
 		"/home/sebastian/Dokumenty/Czolgi/FT.html",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/keyboard_controller.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/game_renderer.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/scroll_event_handler.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/renderLayerClass.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/mainMenu/scene.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/tutorialSequence/tutorialIntro/scene.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/animationEngine/animation_class.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/9_slice_lib.js",
+		"/home/sebastian/Dokumenty/Czolgi/scripts/renderingEngine/renderObjectClass.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/intro_cutscene.js",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets/global.css",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets/gameObjects.css",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets/standardUi.css",
+		"/home/sebastian/Dokumenty/Czolgi/stylesheets/uiElements.css",
+		"/home/sebastian/Dokumenty/Czolgi/main_menu.html",
+		"/home/sebastian/Dokumenty/Czolgi/driving.html",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/MainMenu/scene.js",
 		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/themes/ITS Theme/theme.css",
 		"/home/sebastian/Dokumenty/Obsidian/Coc/.obsidian/plugins/obsidian-style-settings/data.json",
@@ -270,14 +308,10 @@
 		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/main_menu.js",
 		"/home/sebastian/Dokumenty/Czolgi/FT.sublime-workspace",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/scenes/made_by.js",
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets/global.css",
 		"/home/sebastian/Dokumenty/Czolgi/index.html",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/click_event_handler.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/hover_event_handler.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/mouseHandling/cursorInRectLib.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/hoverEventHandler/hover_event_handler.js",
-		"/home/sebastian/Dokumenty/Czolgi/main_menu.html",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/controllable_tank.js",
 		"/home/sebastian/Dokumenty/Czolgi/.sublime-project",
 		"/home/sebastian/Dokumenty/Czolgi/untitled.json",
 		"/home/sebastian/config",
@@ -286,14 +320,9 @@
 		"/home/sebastian/sierploński.c",
 		"/home/sebastian/turtle.c",
 		"/home/sebastian/Pobrane/turtle.c",
-		"/home/sebastian/Dokumenty/Czolgi/driving.html",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/game_renderer.js",
 		"/home/sebastian/Dokumenty/Czolgi/README.md",
-		"/home/sebastian/Dokumenty/Czolgi/scripts/keyboard_controller.js",
 		"/home/sebastian/Dokumenty/Czolgi/scripts/debug_box.js",
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets/standardUi.css",
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets/gameObjects.css",
-		"/home/sebastian/Dokumenty/Czolgi/stylesheets/uiElements.css",
 		"/home/sebastian/Dokumenty/ex.js",
 		"/home/sebastian/Dokumenty/3.html",
 		"/home/sebastian/Dokumenty/2.html",
@@ -376,17 +405,11 @@
 		"/home/sebastian/.local/share/PrismLauncher/instances/1.20.1/.minecraft/resourcepacks/AdventurePack/pack.mcmeta",
 		"/home/sebastian/posrany for.c",
 		"/home/sebastian/zadanie1.c",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/instance.cfg",
-		"/home/sebastian/Pobrane/Decocraft-2.6.3.7_1.12.2/assets/props/models/item/props.json",
-		"/home/sebastian/Pobrane/Decocraft-2.6.3.7_1.12.2/assets/props/models/Decopack/202101241928_DecopackFull.json",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/CustomNpcs.cfg",
-		"/home/sebastian/Pobrane/README.md",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/survivalinc.cfg",
-		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/.minecraft/config/RPG-HUD/settings.cfg"
+		"/home/sebastian/.local/share/PrismLauncher/instances/1.12.2/instance.cfg"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -400,6 +423,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"fadeIn",
+			"parent",
+			"defineAnim",
+			"overlayRe",
+			"addHoverable",
+			"playButt",
+			"getLayer",
+			"defineText",
+			"alstor",
+			"defineText",
+			"defineTExt",
 			"defineText",
 			"url(\"data:image/png",
 			"url(\"data:image/",

@@ -96,7 +96,7 @@ const sceneIntroCutscene = {
 		const text5Appear = text5.newAnimation("appear", "opacity");
 		const text5Disappear = text5.newAnimation("disappear", "opacity");;
 		slide5.defineRect("rgb(25 187 44 / 0)", 3, 3, 314, 152);
-		text5.defineText("...designed a machine. A machine to win the war.", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 170);
+		text5.defineText("...designed a machine. A machine to win the war.", "rgb(255 255 255 / 0", "6px dogica", "center", 160, 170);
 		slide5Appear.defineAnimation(0, 1, "linear", 0);
 		slide5Disappear.defineAnimation(1, 0, "linear", 0);
 		text5Appear.defineAnimation(0, 1, "linear", 0);

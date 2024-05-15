@@ -1,6 +1,10 @@
 //GLOBAL
 const keyMemoryMap = new Map();		//Map object containing pressed keys
 const controlsMapping = {			//Object defining the controls mapping
+		goForwards: "w",
+		goBackwards: "s",
+		goLeft: "a",
+		goRight: "d",
 		leftTrackForwards: "q",
 		leftTrackReverse: "a",
 		rightTrackForwards: "e",
