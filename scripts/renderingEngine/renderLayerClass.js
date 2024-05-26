@@ -13,6 +13,11 @@ class renderLayer {
 			if(this.renderObjects[i].id == id) return this.renderObjects[i];
 		}
 	};
+	getSublayer(id){
+		for(let i=0; i<this.subLayers.length; i++){
+			if(this.subLayers[i].id == id) return this.subLayers[i];
+		}
+	};
 	newObject(id, type){
 		const newObject = new renderObject(id, type);
 		this.renderObjects.push(newObject);
@@ -20,7 +25,12 @@ class renderLayer {
 	};
 	addObject(object){
 		this.renderObjects.push(object);
-	}
+	};
+	newSublayer(id, objects){
+		const newSublayer = new renderLayer(id, objects);
+		this.subLayers.push(newSublayer);
+		return newSublayer;
+	};
 	enableOffset(variable){
 		if(variable != undefined) this.offsetEnabled = variable;
 		else this.offsetEnabled = true;

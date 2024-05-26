@@ -1,5 +1,6 @@
 const sceneIntroCutscene = {
 	load: function(){
+		gameEngine.clear()
 		rendererObject.clear();
 		hoverEventHandler.clear();
 		clickEventHandler.clear();
@@ -17,42 +18,42 @@ const sceneIntroCutscene = {
 		const frostDisappear = frost.newAnimation("disappear", "opacity");
 		madeBy.defineText("Made by", "#FFFFFF", "8px dogica", "center", 160, 70);
 		frost.defineText("FROST", "#FFFFFF", "10.75px dogica", "center", 160, 82);
-		madeByDisappear.defineAnimation(1, 0, "linear", 0);
-		frostDisappear.defineAnimation(1, 0, "linear", 0);
+		madeByDisappear.defineLinear(1, 0, "linear", 0);
+		frostDisappear.defineLinear(1, 0, "linear", 0);
 
 		//Text of slide 1
-		const slide1 = slideshowLayer.newObject("slide1", "rect");
+		const slide1 = slideshowLayer.newObject("slide1", "img");
 		const text1 = slideshowLayer.newObject("text1", "text");
-		const slide1Appear = slide1.newAnimation("appear", "opacity");
-		const slide1Disappear = slide1.newAnimation("disappear", "opacity");
+		const slide1Appear = slide1.newAnimation("appear", "y");
+		const slide1Disappear = slide1.newAnimation("disappear", "y");
 		const text1Appear = text1.newAnimation("appear", "opacity");
 		const text1Disappear = text1.newAnimation("disappear", "opacity");;
-		slide1.defineRect("rgb(221 93 51 / 0)", 3, 3, 314, 152);
+		slide1.defineImg("./assets/backgrounds/slide1.png", 3, 183);
 		text1.defineText("In 1918, war has already ravaged Europe for more than 4 years.", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 170);
-		slide1Appear.defineAnimation(0, 1, "linear", 0);
-		slide1Disappear.defineAnimation(1, 0, "linear", 0);
-		text1Appear.defineAnimation(0, 1, "linear", 0);
-		text1Disappear.defineAnimation(1, 0, "linear", 0);
+		slide1Appear.defineLinear(183, 3, "linear", 0);
+		slide1Disappear.defineLinear(3, 183, "linear", 0);
+		text1Appear.defineLinear(0, 1, "linear", 0);
+		text1Disappear.defineLinear(1, 0, "linear", 0);
 
 		//Text of slide 2
-		const slide2 = slideshowLayer.newObject("slide2", "rect");
+		const slide2 = slideshowLayer.newObject("slide2", "img");
 		const text2 = slideshowLayer.newObject("text2", "text");
 		const text21 = slideshowLayer.newObject("text21", "text");
-		const slide2Appear = slide2.newAnimation("appear", "opacity");
-		const slide2Disappear = slide2.newAnimation("disappear", "opacity");
+		const slide2Appear = slide2.newAnimation("appear", "y");
+		const slide2Disappear = slide2.newAnimation("disappear", "y");
 		const text2Appear = text2.newAnimation("appear", "opacity");
 		const text2Disappear = text2.newAnimation("disappear", "opacity");
 		const text21Appear = text21.newAnimation("appear", "opacity");
 		const text21Disappear = text21.newAnimation("disappear", "opacity");
-		slide2.defineRect("rgb(112 108 2 / 0)", 3, 3, 314, 152);
+		slide2.defineImg("./assets/backgrounds/slide2.png", 3, 183);
 		text2.defineText("West of the German Empire, a bloody stalemate has proven", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 164);
 		text21.defineText("impossible to break...", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 174);
-		slide2Appear.defineAnimation(0, 1, "linear", 0);
-		slide2Disappear.defineAnimation(1, 0, "linear", 0);
-		text2Appear.defineAnimation(0, 1, "linear", 0);
-		text2Disappear.defineAnimation(1, 0, "linear", 0);
-		text21Appear.defineAnimation(0, 1, "linear", 0);
-		text21Disappear.defineAnimation(1, 0, "linear", 0);
+		slide2Appear.defineLinear(183, 3, "linear", 0);
+		slide2Disappear.defineLinear(3, 183, "linear", 0);
+		text2Appear.defineLinear(0, 1, "linear", 0);
+		text2Disappear.defineLinear(1, 0, "linear", 0);
+		text21Appear.defineLinear(0, 1, "linear", 0);
+		text21Disappear.defineLinear(1, 0, "linear", 0);
 
 		//Text of slide 3
 		const slide3 = slideshowLayer.newObject("slide3", "rect");
@@ -63,10 +64,10 @@ const sceneIntroCutscene = {
 		const text3Disappear = text3.newAnimation("disappear", "opacity");;
 		slide3.defineRect("rgb(25 187 44 / 0)", 3, 3, 314, 152);
 		text3.defineText("...even with support from over the ocean.", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 170);
-		slide3Appear.defineAnimation(0, 1, "linear", 0);
-		slide3Disappear.defineAnimation(1, 0, "linear", 0);
-		text3Appear.defineAnimation(0, 1, "linear", 0);
-		text3Disappear.defineAnimation(1, 0, "linear", 0);
+		slide3Appear.defineLinear(0, 1, "linear", 0);
+		slide3Disappear.defineLinear(1, 0, "linear", 0);
+		text3Appear.defineLinear(0, 1, "linear", 0);
+		text3Disappear.defineLinear(1, 0, "linear", 0);
 
 		//Text of slide 4
 		const slide4 = slideshowLayer.newObject("slide4", "rect");
@@ -81,12 +82,12 @@ const sceneIntroCutscene = {
 		slide4.defineRect("rgb(240 207 51 / 0)", 3, 3, 314, 152);
 		text4.defineText("But the French army, together with Louis Renault", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 164);
 		text41.defineText("in secret factories deep inside France...", "rgb(255 255 255 / 0)", "6px dogica", "center", 160, 174);
-		slide4Appear.defineAnimation(0, 1, "linear", 0);
-		slide4Disappear.defineAnimation(1, 0, "linear", 0);
-		text4Appear.defineAnimation(0, 1, "linear", 0);
-		text4Disappear.defineAnimation(1, 0, "linear", 0);
-		text41Appear.defineAnimation(0, 1, "linear", 0);
-		text41Disappear.defineAnimation(1, 0, "linear", 0);
+		slide4Appear.defineLinear(0, 1, "linear", 0);
+		slide4Disappear.defineLinear(1, 0, "linear", 0);
+		text4Appear.defineLinear(0, 1, "linear", 0);
+		text4Disappear.defineLinear(1, 0, "linear", 0);
+		text41Appear.defineLinear(0, 1, "linear", 0);
+		text41Disappear.defineLinear(1, 0, "linear", 0);
 
 		//Text of slide 5
 		const slide5 = slideshowLayer.newObject("slide5", "rect");
@@ -97,10 +98,10 @@ const sceneIntroCutscene = {
 		const text5Disappear = text5.newAnimation("disappear", "opacity");;
 		slide5.defineRect("rgb(25 187 44 / 0)", 3, 3, 314, 152);
 		text5.defineText("...designed a machine. A machine to win the war.", "rgb(255 255 255 / 0", "6px dogica", "center", 160, 170);
-		slide5Appear.defineAnimation(0, 1, "linear", 0);
-		slide5Disappear.defineAnimation(1, 0, "linear", 0);
-		text5Appear.defineAnimation(0, 1, "linear", 0);
-		text5Disappear.defineAnimation(1, 0, "linear", 0);
+		slide5Appear.defineLinear(0, 1, "linear", 0);
+		slide5Disappear.defineLinear(1, 0, "linear", 0);
+		text5Appear.defineLinear(0, 1, "linear", 0);
+		text5Disappear.defineLinear(1, 0, "linear", 0);
 
 		//The black overlay that works as a fade in-out
 		const overlayLayer = rendererObject.newLayer("overlayLayer", []);
@@ -118,18 +119,18 @@ const sceneIntroCutscene = {
 		const rectFadeOut6 = overlayRect.newAnimation("rectFadeOut6", "opacity");
 		const rectFadeIn6 = overlayRect.newAnimation("rectFadeIn6", "opacity");
 		overlayRect.defineRect("rgb(0 0 0 / 1.0)", 0, 0, 320, 180);
-		rectFadeOut1.defineAnimation(1, 0, "linear", 2)
-		rectFadeIn1.defineAnimation(0, 1, "linear", 1);
-		rectFadeOut2.defineAnimation(1, 0, "linear", 1);
-		rectFadeIn2.defineAnimation(0, 1, "linear", 1);
-		rectFadeOut3.defineAnimation(1, 0, "linear", 1);
-		rectFadeIn3.defineAnimation(0, 1, "linear", 1);
-		rectFadeOut4.defineAnimation(1, 0, "linear", 1);
-		rectFadeIn4.defineAnimation(0, 1, "linear", 1);
-		rectFadeOut5.defineAnimation(1, 0, "linear", 1);
-		rectFadeIn5.defineAnimation(0, 1, "linear", 1);
-		rectFadeOut6.defineAnimation(1, 0, "linear", 1);
-		rectFadeIn6.defineAnimation(0, 1, "linear", 4);
+		rectFadeOut1.defineLinear(1, 0, "linear", 2)
+		rectFadeIn1.defineLinear(0, 1, "linear", 1);
+		rectFadeOut2.defineLinear(1, 0, "linear", 1);
+		rectFadeIn2.defineLinear(0, 1, "linear", 1);
+		rectFadeOut3.defineLinear(1, 0, "linear", 1);
+		rectFadeIn3.defineLinear(0, 1, "linear", 1);
+		rectFadeOut4.defineLinear(1, 0, "linear", 1);
+		rectFadeIn4.defineLinear(0, 1, "linear", 1);
+		rectFadeOut5.defineLinear(1, 0, "linear", 1);
+		rectFadeIn5.defineLinear(0, 1, "linear", 1);
+		rectFadeOut6.defineLinear(1, 0, "linear", 1);
+		rectFadeIn6.defineLinear(0, 1, "linear", 4);
 
 		//Animation sequencing
 		rectFadeOut1.chainAnimation(rectFadeIn1, 1);

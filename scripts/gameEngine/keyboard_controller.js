@@ -5,6 +5,7 @@ const controlsMapping = {			//Object defining the controls mapping
 		goBackwards: "s",
 		goLeft: "a",
 		goRight: "d",
+		interact: "f",
 		leftTrackForwards: "q",
 		leftTrackReverse: "a",
 		rightTrackForwards: "e",

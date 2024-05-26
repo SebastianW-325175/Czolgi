@@ -1,5 +1,6 @@
 const sceneTutorialIntro = {
 	load: function(){
+		gameEngine.clear()
 		rendererObject.clear();
 		hoverEventHandler.clear();
 		clickEventHandler.clear();
@@ -23,10 +24,10 @@ const sceneTutorialIntro = {
 		text2.defineText("May 8th, Thursday, 10:32 AM", "rgb(255 255 255 / 0)", "6px Dogica", "right", 310, 150);
 		text3.defineText("Three months to", "rgb(255 255 255 / 0)", "6px Dogica", "right", 244, 160);
 		text4.defineText("The Offensive", "rgb(189 0 0 / 0)", "6px Dogica", "right", 310, 160);
-		text1Appear.defineAnimation(0, 1, "linear", 0.5);
-		text2Appear.defineAnimation(0, 1, "linear", 0.5);
-		text3Appear.defineAnimation(0, 1, "linear", 1);
-		text4Appear.defineAnimation(0, 1, "linear", 1);
+		text1Appear.defineLinear(0, 1, "linear", 0.5);
+		text2Appear.defineLinear(0, 1, "linear", 0.5);
+		text3Appear.defineLinear(0, 1, "linear", 1);
+		text4Appear.defineLinear(0, 1, "linear", 1);
 		text1Appear.chainAnimation(text2Appear, 1);
 		text2Appear.endScript = function(){
 			const textLayer = rendererObject.getLayer("textLayer");
@@ -35,6 +36,17 @@ const sceneTutorialIntro = {
 			text3.getAnimation("text3FadeIn").playAnimation();
 			text4.getAnimation("text4FadeIn").playAnimation();
 		}
+
+		//Overlay layer
+		const overlayLayer = rendererObject.newLayer("overlayLayer", []);
+		const overlayRect = overlayLayer.newObject("overlayRect", "rect");
+		const overlayFadeIn = overlayRect.newAnimation("fadeIn", "opacity");
+		overlayRect.defineRect("rgb(255 255 255 / 0)", 0, 0, 320, 180);
+		overlayFadeIn.defineLinear(0, 1, "linear", 2);
+		overlayFadeIn.endScript = function(){
+			sceneTutorialPart1.load();
+		};
+		text4Appear.chainAnimation(overlayFadeIn, 1);
 
 		rendererObject.renderLoop();
 		text1Appear.playAnimation();

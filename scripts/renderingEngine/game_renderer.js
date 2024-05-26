@@ -56,44 +56,49 @@ const rendererObject = {
 				((320-(320/this.camera.zoom))/2)*-1,
 				((180-(180/this.camera.zoom))/2)*-1
 			);
-		}
+		};
 		switch(object.type){
 		case "rect":
 			object.updateColorOpacity();
-			this.context.fillStyle = object.color;
-			this.context.fillRect(
+			this.context.translate(
 				object.x+(this.camera.offsetX*offsetEnabled),
-				object.y+(this.camera.offsetY*offsetEnabled),
-				object.width,
-				object.height
+				object.y+(this.camera.offsetY*offsetEnabled)
 			);
+			if(object.rotation)	{
+				this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
+				this.context.rotate((Math.PI/180)*object.rotation);
+				this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+			};
+			this.context.fillStyle = object.color;
+			this.context.fillRect(0, 0, object.width, object.height);
 			break;
 		case "img":
 			object.updateColorOpacity();
-			this.context.drawImage(
-				object.img, 
-				object.x+(this.camera.offsetX*offsetEnabled), 
+			this.context.translate(
+				object.x+(this.camera.offsetX*offsetEnabled),
 				object.y+(this.camera.offsetY*offsetEnabled)
 			);
+			if(object.rotation)	{
+				this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
+				this.context.rotate((Math.PI/180)*object.rotation);
+				this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+			};
+			this.context.drawImage(object.img, 0, 0);
 			break;
 		case "text":
 			object.updateColorOpacity();
 			this.context.font = object.font;
 			this.context.textAlign = object.textAlign;
-			if(object.shadowColor != undefined){
-				this.context.fillStyle = object.shadowColor;
-				this.context.fillText(
-					object.text, 
-					object.x+(this.camera.offsetX*offsetEnabled), 
-					object.y+object.shadowSize+(this.camera.offsetY*offsetEnabled)
-				);
-			}
-			this.context.fillStyle = object.color;
-			this.context.fillText(
-				object.text, 
-				object.x+(this.camera.offsetX*offsetEnabled), 
+			this.context.translate(
+				object.x+(this.camera.offsetX*offsetEnabled),
 				object.y+(this.camera.offsetY*offsetEnabled)
 			);
+			if(object.shadowColor != undefined){
+				this.context.fillStyle = object.shadowColor;
+				this.context.fillText(object.text, 0, 0+object.shadowSize);
+			}
+			this.context.fillStyle = object.color;
+			this.context.fillText(object.text, 0, 0);
 			break;
 		case "9sliceBox":
 			render9slice(object, this.context);

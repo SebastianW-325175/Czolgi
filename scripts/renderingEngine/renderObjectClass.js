@@ -13,6 +13,8 @@ class renderObject {
 	y;
 	width;
 	height;
+	rotation;
+	rotationOrigin;
 	animations = [];
 	hovered;
 	hoverEvent;
@@ -33,6 +35,11 @@ class renderObject {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.rotation = 0;
+		this.rotationOrigin = [
+			this.width/2,
+			this.height/2
+		];
 	};
 	defineImg(img, x, y){
 		const imageSrc = new Image();
@@ -41,9 +48,14 @@ class renderObject {
 			this.img = imageSrc;
 			this.width = imageSrc.naturalWidth;
 			this.height = imageSrc.naturalHeight;
+			this.rotationOrigin = [
+				this.width/2,
+				this.height/2
+			];
 		});
 		this.x = x;
 		this.y = y;
+		this.rotation = 0;
 	};
 	defineText(text, color, font, textAlign, x, y){
 		this.text = text;

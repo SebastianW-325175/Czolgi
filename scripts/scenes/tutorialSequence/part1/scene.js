@@ -1,46 +1,133 @@
 const sceneTutorialPart1 = {
 	load: function(){
+		gameEngine.clear()
 		rendererObject.clear();
 		hoverEventHandler.clear();
 		clickEventHandler.clear();
 
-		//Background layer
+		//BACKGROUND LAYER
 		const backgroundLayer = rendererObject.newLayer("backgroundLayer", []);
-		const backgroundColor = backgroundLayer.newObject("backgroundColor", "rect")
 		const tile1 = backgroundLayer.newObject("tile1", "img");
 		backgroundLayer.enableOffset();
-		backgroundColor.defineRect("#FFFFFF", -160, -90, 320, 180);
-		tile1.defineImg("./assets/map/training_grounds.png", -150, -150);
+		tile1.defineImg("./assets/map/training_grounds.png", -180, -180);
 
-		//Character layer
+		//CHARACTERS LAYER
 		const characterLayer = rendererObject.newLayer("characterLayer", []);
 		characterLayer.enableOffset();
-		//Driver object
+
+		//MANNEQUIN FRENCH
+		const mannequinFrenchObject = gameEngine.newObject("mannequinFrench");
+		const mannequinFrenchSprite = characterLayer.newObject("mannequinFrenchSprite", "img");
+		mannequinFrenchSprite.defineImg("./assets/characters/soldier/french.png", 0, 0);
+		mannequinFrenchObject.sprite = mannequinFrenchSprite;
+		mannequinFrenchObject.position = [-80, -155];
+		mannequinFrenchObject.collisionBox = [7 ,7];
+		mannequinFrenchObject.rotation = 180;
+
+		//MANNEQUIN GERMAN
+		const mannequinGermanObject = gameEngine.newObject("mannequinGerman");
+		const mannequinGermanSprite = characterLayer.newObject("mannequinGermanSprite", "img");
+		mannequinGermanSprite.defineImg("./assets/characters/soldier/german.png", 0, 0);
+		mannequinGermanObject.sprite = mannequinGermanSprite;
+		mannequinGermanObject.position = [-50, -155];
+		mannequinGermanObject.collisionBox = [7 ,7];
+		mannequinGermanObject.rotation = 180;
+
+		//SERGEANT OBJECT
+		const sergeantObject = gameEngine.newObject("sergeant");
+		const sergeantSprite = characterLayer.newObject("sergeantSprite", "img");
+		const sergeantHighlight = sergeantSprite.newAnimation("highlight");
+		const sergeantUnhighlight = sergeantSprite.newAnimation("unhighlight");
+		sergeantSprite.defineImg("./assets/characters/sergeant/sergeant.png", 0, 0);
+		sergeantObject.sprite = sergeantSprite;
+		sergeantObject.interact = function(){
+			objectiveHandler.dataRegistry.set("interactedSergeant", true);
+			gameEngine.controlledObject.updateControls = function(){};
+		}
+		sergeantHighlight.defineKeyframes([
+			new animationKeyframe("./assets/characters/sergeant/sergeant_highlighted.png", 0),
+		]);
+		sergeantHighlight.endScript = function(){
+			objectiveHandler.dataRegistry.set("nearSergeant", true);
+		}
+		sergeantUnhighlight.defineKeyframes([
+			new animationKeyframe("./assets/characters/sergeant/sergeant.png", 0),
+		]);
+		sergeantObject.position = [-20, -100];
+		sergeantObject.collisionBox = [7, 7];
+		sergeantObject.rotation = 190;
+		sergeantObject.isInteractable = true;
+
+		//TANK OBJECT
+		const tankObject = gameEngine.newObject("tank");
+		const tankSprite = characterLayer.newObject("tankSprite", "img");
+		const tankHighlight = tankSprite.newAnimation("highlight");
+		const tankUnhighlight = tankSprite.newAnimation("unhighlight");
+		tankSprite.defineImg("./assets/characters/tank/tank_hull.png", 0, 0);
+		tankObject.sprite = tankSprite;
+		tankHighlight.defineKeyframes([
+			new animationKeyframe("./assets/characters/tank/tank_hull_highlighted.png", 0),
+		]);
+		tankUnhighlight.defineKeyframes([
+			new animationKeyframe("./assets/characters/tank/tank_hull.png", 0),
+		]);
+		tankObject.position = [-60, -75];
+		tankObject.collisionBox = [15, 15];
+		tankObject.rotation = 90;
+
+		//TURRET OBJECT
+		const turretObject = gameEngine.newObject("turret");
+		const turretSprite = characterLayer.newObject("turretSprite", "img");
+		turretSprite.defineImg("./assets/characters/tank/tank_turret.png", 0, 0);
+		turretObject.sprite = turretSprite;
+		turretObject.position = [-60, -75];
+		turretObject.collisionBox = [0,0];
+		turretObject.rotation = 90;
+
+		//DRIVER OBJECT
 		const driverObject = gameEngine.newObject("driver");
 		const driverSprite = characterLayer.newObject("driverSprite", "img");
+		const driverWalkAnimation = driverSprite.newAnimation("walk");
 		driverSprite.defineImg("./assets/characters/driver/shirt/idle.png", 0, 0);
+		driverWalkAnimation.defineKeyframes([
+			new animationKeyframe("./assets/characters/driver/shirt/idle.png", 100),
+			new animationKeyframe("./assets/characters/driver/shirt/step_left.png", 200),
+			new animationKeyframe("./assets/characters/driver/shirt/idle.png", 100),
+			new animationKeyframe("./assets/characters/driver/shirt/step_right.png", 200),
+		]);
+		driverWalkAnimation.chainAnimation(driverWalkAnimation, 0);
 		driverObject.sprite = driverSprite;
 		driverObject.position = [0, 0];
-		driverObject.updateControls = function(){
-			if(keyMemoryMap.get(controlsMapping.goForwards)) this.position[1] += 0.42;
-			if(keyMemoryMap.get(controlsMapping.goBackwards)) this.position[1] -= 0.42;
-			if(keyMemoryMap.get(controlsMapping.goRight)) this.position[0] += 0.42;
-			if(keyMemoryMap.get(controlsMapping.goLeft)) this.position[0] -= 0.42;
-		};
+		driverObject.collisionBox = [7, 7];
+		driverObject.updateControls = controlSchemeLibrary.humanCharacter;
 
-		//Interface layer
+		//INTERFACE LAYER
 		const interfaceLayer = rendererObject.newLayer("interfaceLayer", []);
-		const placeholderWindow = interfaceLayer.newObject("placeholderWindow", "rect");
-		const placeholderText1 = interfaceLayer.newObject("placeHolderText1", "text");
-		const placeholderText2 = interfaceLayer.newObject("placeHolderText2", "text");
-		const placeholderText3 = interfaceLayer.newObject("placeHolderText2", "text");
-		placeholderWindow.defineRect("#1023FE", 90, 2, 140, 28);
-		placeholderText1.defineText("This is the interface", "#FFFFFF", "6px Dogica", "center", 160, 10);
-		placeholderText2.defineText("It does not scale with zoom", "#FFFFFF", "6px Dogica", "center", 160, 18);
-		placeholderText3.defineText("It maintains a pixel size", "#FFFFFF", "6px Dogica", "center", 160, 26);
 
-		gameEngine.controlledObject = driverObject;
+		//OVERLAY LAYER
+		const overlayLayer = rendererObject.newLayer("overlayayer", []);
+		const overlayRect = overlayLayer.newObject("overlayRect", "rect");
+		const overlayFadeOut = overlayRect.newAnimation("fadeOut", "opacity");
+		const overlayFadeIn = overlayRect.newAnimation("fadeIn", "opacity");
+		overlayRect.defineRect("rgb(255 255 255 / 1)", 0, 0, 320, 180);
+		overlayFadeOut.defineLinear(1, 0, "linear", 4);
+		overlayFadeIn.defineLinear(0, 1, "linear", 4);
+		
+		overlayFadeOut.endScript = function(){
+			objectiveLibrary.moveAround();
+			gameEngine.controlledObject = driverObject;
+		};
+		overlayFadeIn.endScript = function(){
+			gameEngine.clear()
+			rendererObject.clear();
+			hoverEventHandler.clear();
+			clickEventHandler.clear();
+		}
+
+		overlayFadeOut.playAnimation();
 		gameEngine.tickLoop();
 		rendererObject.renderLoop();
+		objectiveHandler.broadcastInit();
+		dialogueHandler.dialogueInit();
 	}
 }

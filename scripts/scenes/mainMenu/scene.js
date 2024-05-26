@@ -7,9 +7,30 @@ const sceneMainMenu = {
 		//Background layer
 		const backgroundLayer = rendererObject.newLayer("backgroundLayer", []);
 		const backgroundColor = backgroundLayer.newObject("backgroundColor", "rect")
-		const tankers = backgroundLayer.newObject("tankers", "img");
+		const backgroundArt = backgroundLayer.newObject("backgroundArt", "img");
+		const planes = backgroundLayer.newObject("planes", "img");
+		const driver = backgroundLayer.newObject("driver", "img");
+		const commander = backgroundLayer.newObject("commander", "img")
+		const planesFlyby = planes.newAnimation("flyby", "x");
+		const driverIdle = driver.newAnimation("idle");
+		const commanderIdle = commander.newAnimation("idle");
 		backgroundColor.defineRect("#FFFFFF", 0, 0, 320, 180);
-		tankers.defineImg("./assets/tankers.png", -50, 0);
+		backgroundArt.defineImg("./assets/backgrounds/main_menu.png", -70, -5);
+		planes.defineImg("./assets/backgrounds/planes_main_menu.png", 520, 20);
+		driver.defineImg("./assets/backgrounds/driverMainMenu/idle0.png", 142, 32);
+		commander.defineImg("./assets/backgrounds/commanderMainMenu/idle0.png", 229, 33);
+		planesFlyby.defineLinear(520, -100, "linear", 20);
+		planesFlyby.chainAnimation(planesFlyby);
+		driverIdle.defineKeyframes([
+			new animationKeyframe("./assets/backgrounds/driverMainMenu/idle0.png", 500),
+			new animationKeyframe("./assets/backgrounds/driverMainMenu/idle1.png", 500),
+			new animationKeyframe("./assets/backgrounds/driverMainMenu/idle2.png", 1000),
+			new animationKeyframe("./assets/backgrounds/driverMainMenu/idle3.png", 500),
+		]);
+		commanderIdle.defineKeyframes([
+			new animationKeyframe("./assets/backgrounds/commanderMainMenu/idle0.png", 1500),
+			new animationKeyframe("./assets/backgrounds/commanderMainMenu/idle1.png", 1500)
+		])
 
 		//Interface layer
 		const interfaceLayer = rendererObject.newLayer("interfaceLayer", []);
@@ -126,7 +147,7 @@ const sceneMainMenu = {
 		const lighten = overlayRect.newAnimation("lighten", "opacity");
 		const fadeIn = overlayRect.newAnimation("fadeIn", "opacity");
 		overlayRect.defineRect("rgb(0 0 0 / 1)", 0, 0, 320, 180);
-		fadeOut.defineAnimation(1, 0, "linear", 2);
+		fadeOut.defineLinear(1, 0, "linear", 2);
 		fadeOut.endScript = function(){
 			const interfaceLayer = rendererObject.getLayer("interfaceLayer");
 			const playButton = interfaceLayer.getObject("playButton");
@@ -140,14 +161,17 @@ const sceneMainMenu = {
 			clickEventHandler.addClickableObject(settingsButton);
 			clickEventHandler.addClickableObject(aboutButton);
 		};
-		darken.defineAnimation(0, 0.4, "linear", 0.1);
-		lighten.defineAnimation(0.4, 0, "linear", 0.1);
-		fadeIn.defineAnimation(0, 1, "linear", 2);
+		darken.defineLinear(0, 0.4, "linear", 0.1);
+		lighten.defineLinear(0.4, 0, "linear", 0.1);
+		fadeIn.defineLinear(0, 1, "linear", 2);
 		fadeIn.endScript = function(){
 			sceneTutorialIntro.load();
 		}
 
 		rendererObject.renderLoop();
 		fadeOut.playAnimation();
+		planesFlyby.playAnimation();
+		driverIdle.playAnimation();
+		commanderIdle.playAnimation();
 	}
 }
