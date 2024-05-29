@@ -101,11 +101,26 @@ const sceneTutorialPart1 = {
 		driverObject.collisionBox = [7, 7];
 		driverObject.updateControls = controlSchemeLibrary.humanCharacter;
 
+		//INVISIBLE WALLS
+		const wall1 = gameEngine.newObject("wall1");
+		const wall2 = gameEngine.newObject("wall2");
+		const wall3 = gameEngine.newObject("wall3");
+		const wall4 = gameEngine.newObject("wall4");
+		wall1.position = [-55, 70];
+		wall1.collisionBox = [256, 30];
+		wall2.position = [-180, -55]
+		wall2.collisionBox = [30, 256];
+		wall3.position = [-55, -175];
+		wall3.collisionBox = [256, 30];
+		wall4.position = [70, -55]
+		wall4.collisionBox = [30, 256];
+
+
 		//INTERFACE LAYER
 		const interfaceLayer = rendererObject.newLayer("interfaceLayer", []);
 
 		//OVERLAY LAYER
-		const overlayLayer = rendererObject.newLayer("overlayayer", []);
+		const overlayLayer = rendererObject.newLayer("overlayLayer", []);
 		const overlayRect = overlayLayer.newObject("overlayRect", "rect");
 		const overlayFadeOut = overlayRect.newAnimation("fadeOut", "opacity");
 		const overlayFadeIn = overlayRect.newAnimation("fadeIn", "opacity");
@@ -116,12 +131,15 @@ const sceneTutorialPart1 = {
 		overlayFadeOut.endScript = function(){
 			objectiveLibrary.moveAround();
 			gameEngine.controlledObject = driverObject;
+			this.parent.color = "rgb(0 0 0 / 0)"
+			//console.log(this);
 		};
 		overlayFadeIn.endScript = function(){
 			gameEngine.clear()
 			rendererObject.clear();
 			hoverEventHandler.clear();
 			clickEventHandler.clear();
+			sceneMainGameIntro.load();
 		}
 
 		overlayFadeOut.playAnimation();

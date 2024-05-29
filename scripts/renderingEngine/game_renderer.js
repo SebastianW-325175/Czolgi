@@ -65,9 +65,11 @@ const rendererObject = {
 				object.y+(this.camera.offsetY*offsetEnabled)
 			);
 			if(object.rotation)	{
-				this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
-				this.context.rotate((Math.PI/180)*object.rotation);
-				this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+				if(object.rotationOrigin != undefined) {
+					this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
+					this.context.rotate((Math.PI/180)*object.rotation);
+					this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+				}
 			};
 			this.context.fillStyle = object.color;
 			this.context.fillRect(0, 0, object.width, object.height);
@@ -79,11 +81,13 @@ const rendererObject = {
 				object.y+(this.camera.offsetY*offsetEnabled)
 			);
 			if(object.rotation)	{
-				this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
-				this.context.rotate((Math.PI/180)*object.rotation);
-				this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+				if(object.rotationOrigin != undefined) {
+					this.context.translate(object.rotationOrigin[0], object.rotationOrigin[1]);
+					this.context.rotate((Math.PI/180)*object.rotation);
+					this.context.translate(-object.rotationOrigin[0], -object.rotationOrigin[1]);
+				}
 			};
-			this.context.drawImage(object.img, 0, 0);
+			if(object.rotationOrigin != undefined) this.context.drawImage(object.img, 0, 0);
 			break;
 		case "text":
 			object.updateColorOpacity();

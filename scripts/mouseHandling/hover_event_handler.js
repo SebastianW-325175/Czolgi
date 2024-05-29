@@ -1,4 +1,5 @@
 const hoverEventHandler = {
+	lastCursorPosition: [],
 	hoverableObjects: [],
 	hoveredObjects: [],
 	hoveredObjectsBuffer: [],
@@ -10,11 +11,11 @@ const hoverEventHandler = {
 	},
 	registerMousePos: function(event){
 		if(event.target.id == "gameWindow"){
-			let canvasX = ((event.pageX-event.target.offsetLeft)/(event.target.width/320)).toFixed(0);
-			let canvasY = ((event.pageY-event.target.offsetTop)/(event.target.width/320)).toFixed(0);
+			this.lastCursorPosition[0] = ((event.pageX-event.target.offsetLeft)/(event.target.width/320)).toFixed(0);
+			this.lastCursorPosition[1] = ((event.pageY-event.target.offsetTop)/(event.target.width/320)).toFixed(0);
 
 			this.hoverableObjects.forEach(function(object){
-				if(cursorInRect(canvasX, canvasY, object.x, object.y, object.width, object.height)){
+				if(cursorInRect(this.lastCursorPosition[0], this.lastCursorPosition[1], object.x, object.y, object.width, object.height)){
 					if(!object.hovered){
 						object.hoverEvent();
 						object.hovered = true;

@@ -328,7 +328,59 @@ const objectiveLibrary = {
 				"transported to the frontline, where you will meet your gunner.",
 				"Good luck, private."
 			])
-			objectiveLibrary.instructions9();
+			objectiveLibrary.instructions10();
 		}
-	}
+	},
+	instructions10(){
+		gameEngine.controlledObject.lastInteractState = true;
+		objectiveHandler.setCondition(function(){
+			return(gameEngine.controlledObject.lastInteractState == false);
+		});
+		objectiveHandler.conditionMet = function(){
+			const overlayLayer = rendererObject.getLayer("overlayLayer");
+			const overlayRect = overlayLayer.getObject("overlayRect");
+			overlayRect.getAnimation("fadeIn").playAnimation();
+		}
+	},
+	startGame(){
+		objectiveHandler.setCondition(function(){
+			return(keyMemoryMap.get(controlsMapping.interact));
+		});
+		objectiveHandler.conditionMet = function(){
+			sceneMainGame.load();
+		}
+	},
+	allTroopsDie(){
+		objectiveHandler.setCondition(function(){
+			let troops = false;
+			for(let i = 0; i<9; i++){
+				troops = gameEngine.getObject("frenchSoldier"+i);
+				if(troops) {
+					return !troops;
+				}
+			};
+			if(troops == undefined) return true;
+		});
+		objectiveHandler.conditionMet = function(){
+			sceneFailScreen.load();
+		}
+	},
+	winGame(){
+		objectiveHandler.setCondition(function(){
+			return(true);
+		});
+		objectiveHandler.conditionMet = function(){
+			sceneWinScreen.load();
+			clearInterval(objectiveHandler.intervalID);
+			objectiveHandler.intervalID = undefined;
+		}
+	},
+	retry(){
+		objectiveHandler.setCondition(function(){
+			return(keyMemoryMap.get(controlsMapping.interact));
+		});
+		objectiveHandler.conditionMet = function(){
+			sceneMainGame.load();
+		}
+	},
 }

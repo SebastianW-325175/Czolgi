@@ -13,12 +13,16 @@ const gameEngine = {
 	tick: function(){
 		if(this.controlledObject){
 			this.controlledObject.updateControls();
+			this.controlledObject.attachedObjects.forEach(function(object){
+				object.updateControls();
+			});
 			this.controlledObject.updateInteraction();
 			rendererObject.camera.position[0] = this.controlledObject.position[0];
 			rendererObject.camera.position[1] = this.controlledObject.position[1];
 		}
 		this.gameObjects.forEach(function(object){
 			object.updateSprite();
+			object.ai();
 		})
 	},
 	tickLoop: function(){

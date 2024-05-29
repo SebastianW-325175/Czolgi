@@ -5,7 +5,7 @@ class gameObject {
 	collisionBox = [0, 0];
 	attachedObjects = [];
 	sprite;
-	spriteOffset = [-3.5, -3.5];
+	spriteOffset = [0, 0];
 	lastInteractState = undefined;
 	isInteractable;
 	interact;
@@ -15,11 +15,13 @@ class gameObject {
 		this.id = id;
 	};
 	updateSprite(){
-		this.spriteOffset[0] = -this.sprite.width/2;
-		this.spriteOffset[1] = -this.sprite.height/2;
-		this.sprite.x = this.position[0]+this.spriteOffset[0];
-		this.sprite.y = this.position[1]+this.spriteOffset[1];
-		this.sprite.rotation = this.rotation;
+		if(this.sprite != undefined){
+			this.spriteOffset[0] = -this.sprite.width/2;
+			this.spriteOffset[1] = -this.sprite.height/2;
+			this.sprite.x = this.position[0]+this.spriteOffset[0];
+			this.sprite.y = this.position[1]+this.spriteOffset[1];
+			this.sprite.rotation = this.rotation;
+		}
 	};
 	updateInteraction(){
 		if(keyMemoryMap.get(controlsMapping.interact)){
@@ -47,6 +49,37 @@ class gameObject {
 	};
 	updateControls(){
 	};
+	ai(){
+	};
+	shoot(spread, range, reload){
+		this.objectData.reload = reload;
+		const characterLayer = rendererObject.getLayer("characterLayer");
+
+		let i = 0;
+		while(characterLayer.getObject("bullet"+i)){
+			i++;
+		};
+
+		const spawnDistance = Math.sqrt(Math.pow(this.collisionBox[0]+3, 2)+Math.pow(this.collisionBox[0]+3, 2));
+		const spawnDistanceY = Math.cos(this.rotation*(Math.PI/180))*spawnDistance;
+		const spawnDistanceX = Math.sin(this.rotation*Math.PI/180)*spawnDistance;
+		
+		const bullet = gameEngine.newObject("bullet"+i);
+		const bulletSprite = characterLayer.newObject("bulletSprite"+i, "img");
+		bulletSprite.defineImg("./assets/bullet.png", 0, 0);
+		bullet.sprite = bulletSprite;
+		bullet.position = [this.position[0]+spawnDistanceX, this.position[1]-spawnDistanceY];
+		bullet.collisionBox = [2, 2];
+		bullet.rotation = this.rotation+((Math.random()-0.5)*2*spread);
+		bullet.objectData = {
+			parentObject: bullet,
+			rangeLeft: range
+		}
+		bullet.ai = controlSchemeLibrary.bulletAi;
+	};
+	damage(){
+
+	};
 	testCollision(){
 		let returnValue = undefined;
 		gameEngine.gameObjects.forEach(function(object){
@@ -58,8 +91,7 @@ class gameObject {
 				this.position[1]-(this.collisionBox[1]/2) < object.position[1]+(object.collisionBox[1]/2) &&
 				this.position[1]+(this.collisionBox[1]/2) > object.position[1]-(object.collisionBox[1]/2)
 			){
-				console.log(object.id);
-				returnValue = true;
+				returnValue = object;
 				return;
 			}
 		}, this)

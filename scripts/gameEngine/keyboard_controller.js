@@ -10,6 +10,9 @@ const controlsMapping = {			//Object defining the controls mapping
 		leftTrackReverse: "a",
 		rightTrackForwards: "e",
 		rightTrackReverse: "d",
+		turretLeft: "j",
+		turretRight: "l",
+		shoot: "k",
 		showDebug: "]"
 };
 

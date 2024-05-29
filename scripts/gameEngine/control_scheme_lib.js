@@ -213,5 +213,101 @@ const controlSchemeLibrary = {
 				object.rotation += angleRotated;
 			})
 		}
+	},
+	turretCharacter: function(){
+		if(keyMemoryMap.get(controlsMapping.turretLeft)) this.rotation -= 0.5;
+		if(keyMemoryMap.get(controlsMapping.turretRight)) this.rotation += 0.5;
+		if(this.objectData.reload == 0 && keyMemoryMap.get(controlsMapping.shoot)) this.shoot(0, 13, 10);
+		if(this.objectData.reload != 0) this.objectData.reload -= 1;
+	},
+	bulletAi: function(){
+		if(this.objectData.rangeLeft > 0){
+			this.objectData.rangeLeft -= 1;
+			const travelY = Math.cos(this.rotation*(Math.PI/180))*10;
+			const travelX = Math.sin(this.rotation*Math.PI/180)*10;
+			this.position[0] += travelX;
+			this.position[1] -= travelY;
+			const collision = this.testCollision();
+			if(collision) collision.damage(); 
+		}else{
+			const characterLayer = rendererObject.getLayer("characterLayer");
+			const bulletIndex = gameEngine.gameObjects.indexOf(this);
+			const bulletSpriteIndex = characterLayer.renderObjects.indexOf(this.sprite);
+
+			characterLayer.renderObjects.splice(bulletSpriteIndex, 1);
+			gameEngine.gameObjects.splice(bulletIndex, 1);
+		}
+	},
+	allyAi: function(){
+		let seesEnemy = false;
+		gameEngine.gameObjects.forEach(function(object){
+			if(object.id.includes("germanSoldier")){
+				const distanceX = object.position[0]-this.position[0];
+				const distanceY = object.position[1]-this.position[1];
+				const distanceTotal = Math.sqrt((distanceX*distanceX)+(distanceY*distanceY));
+				if(distanceTotal < 100) {
+					seesEnemy = object;
+					rotateAngle = Math.atan(-distanceY/distanceX)/(Math.PI/180);
+					if(distanceX<0){
+						rotateAngle += 90;
+						rotateAngle *= -1;
+					}else{
+						rotateAngle = 90-rotateAngle;
+					}
+					this.rotation = rotateAngle;
+					return;
+				}
+			}
+		}, this);
+
+		if(seesEnemy){
+			if(this.objectData.reload == 0) this.shoot(20, 20, 100);
+			else this.objectData.reload -= 1;
+		}else{
+			this.rotation = 0;
+			this.position[1] -= 0.2;
+			const collision = this.testCollision();
+			if(collision){
+				this.position[1] += 0.2;
+				if(collision.id.includes("ditch")){
+					const savedX = collision.sprite.x;
+					const savedY = collision.sprite.y;
+					collision.collisionBox = [0, 0];
+					collision.sprite.defineImg("./assets/characters/ditch/ditch_crossed.png", 0, 0);
+					gameEngine.gameObjects.splice(gameEngine.gameObjects.indexOf(collision), 1);
+					collision.sprite.x = savedX;
+					collision.sprite.y = savedY;
+				}
+			}
+		}
+
+		if(this.position[1] < -1200) objectiveLibrary.winGame();
+	},
+	enemyAi: function(){
+		let  seesEnemy = false;
+		gameEngine.gameObjects.forEach(function(object){
+			if(object.id.includes("frenchSoldier") || object.id.includes("tank")){
+				const distanceX = object.position[0]-this.position[0];
+				const distanceY = object.position[1]-this.position[1];
+				const distanceTotal = Math.sqrt((distanceX*distanceX)+(distanceY*distanceY));
+				if(distanceTotal < 100) {
+					seesEnemy = object;
+					rotateAngle = Math.atan(-distanceY/distanceX)/(Math.PI/180);
+					if(distanceX<0){
+						rotateAngle += 90;
+						rotateAngle *= -1;
+					}else{
+						rotateAngle = 90-rotateAngle;
+					}
+					this.rotation = rotateAngle;
+					return;
+				}
+			}
+		}, this);
+
+		if(seesEnemy){
+			if(this.objectData.reload == 0) this.shoot(8, 20, 85);
+			else this.objectData.reload -= 1;
+		}
 	}
 }

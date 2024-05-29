@@ -7,7 +7,7 @@ const objectiveHandler = {
 	},
 	setCondition(condition){
 		this.condition = condition;
-		this.intervalID = setInterval(function(){objectiveHandler.testCondition()}, 1000/60);
+		if(this.intervalID == undefined) this.intervalID = setInterval(function(){objectiveHandler.testCondition()}, 1000/60);
 	},
 	testCondition(){
 		if(this.condition()){
