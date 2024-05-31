@@ -9,6 +9,7 @@ const sceneMainMenu = {
 		const backgroundColor = backgroundLayer.newObject("backgroundColor", "rect")
 		const backgroundArt = backgroundLayer.newObject("backgroundArt", "img");
 		const planes = backgroundLayer.newObject("planes", "img");
+		const tank = backgroundLayer.newObject("tank", "img");
 		const driver = backgroundLayer.newObject("driver", "img");
 		const commander = backgroundLayer.newObject("commander", "img")
 		const planesFlyby = planes.newAnimation("flyby", "x");
@@ -17,6 +18,7 @@ const sceneMainMenu = {
 		backgroundColor.defineRect("#FFFFFF", 0, 0, 320, 180);
 		backgroundArt.defineImg("./assets/backgrounds/main_menu.png", -70, -5);
 		planes.defineImg("./assets/backgrounds/planes_main_menu.png", 520, 20);
+		tank.defineImg("./assets/backgrounds/tankMainMenu/tank.png", 115, -5);
 		driver.defineImg("./assets/backgrounds/driverMainMenu/idle0.png", 142, 32);
 		commander.defineImg("./assets/backgrounds/commanderMainMenu/idle0.png", 229, 33);
 		planesFlyby.defineLinear(520, -100, "linear", 20);
@@ -36,12 +38,10 @@ const sceneMainMenu = {
 		const interfaceLayer = rendererObject.newLayer("interfaceLayer", []);
 		const gameLogo = interfaceLayer.newObject("gameLogo", "img");
 		const playButton = interfaceLayer.newObject("playButton", "img");
-		const settingsButton = interfaceLayer.newObject("settingsButton", "img");
 		const aboutButton = interfaceLayer.newObject("aboutButton", "img");
 		gameLogo.defineImg("./assets/game_logo.png", 15, 0);
 		playButton.defineImg("./assets/buttons/play_button.png", 20, 90);
-		settingsButton.defineImg("./assets/buttons/settings_button.png", 20, 114);
-		aboutButton.defineImg("./assets/buttons/about_button.png", 20, 138);
+		aboutButton.defineImg("./assets/buttons/about_button.png", 20, 114);
 		playButton.hoverEvent = function(){
 			this.defineImg("./assets/buttons/play_button_highlighted.png", 20, 90);
 		};
@@ -56,15 +56,6 @@ const sceneMainMenu = {
 			const overlayRect = overlayLayer.getObject("overlayRect");
 			const fadeIn = overlayRect.getAnimation("fadeIn");
 			fadeIn.playAnimation();
-		};
-		settingsButton.hoverEvent = function(){
-			this.defineImg("./assets/buttons/settings_button_highlighted.png", 20, 114);
-		};
-		settingsButton.unhoverEvent = function(){
-			this.defineImg("./assets/buttons/settings_button.png", 20, 114);
-		};
-		settingsButton.clickEvent = function(){
-			console.log("Settings kliknięte!");
 		};
 		aboutButton.hoverEvent = function(){
 			this.defineImg("./assets/buttons/about_button_highlighted.png", 20, 138);
@@ -103,7 +94,6 @@ const sceneMainMenu = {
 			closeButton.clickEvent = function(){
 				const interfaceLayer = rendererObject.getLayer("interfaceLayer");
 				const playButton = interfaceLayer.getObject("playButton");
-				const settingsButton = interfaceLayer.getObject("settingsButton");
 				const aboutButton = interfaceLayer.getObject("aboutButton");
 				const overlayLayer = rendererObject.getLayer("overlayLayer");
 				const overlayRect = overlayLayer.getObject("overlayRect");
@@ -113,10 +103,8 @@ const sceneMainMenu = {
 				rendererObject.renderQueue.splice(aboutBoxLayerIndex, 1);
 				lighten.playAnimation();
 				hoverEventHandler.addHoverableObject(playButton);
-				hoverEventHandler.addHoverableObject(settingsButton);
 				hoverEventHandler.addHoverableObject(aboutButton);
 				clickEventHandler.addClickableObject(playButton);
-				clickEventHandler.addClickableObject(settingsButton);
 				clickEventHandler.addClickableObject(aboutButton);
 			};
 			hoverEventHandler.addHoverableObject(closeButton);
@@ -151,14 +139,11 @@ const sceneMainMenu = {
 		fadeOut.endScript = function(){
 			const interfaceLayer = rendererObject.getLayer("interfaceLayer");
 			const playButton = interfaceLayer.getObject("playButton");
-			const settingsButton = interfaceLayer.getObject("settingsButton");
 			const aboutButton = interfaceLayer.getObject("aboutButton");
 
 			hoverEventHandler.addHoverableObject(playButton);
-			hoverEventHandler.addHoverableObject(settingsButton);
 			hoverEventHandler.addHoverableObject(aboutButton);
 			clickEventHandler.addClickableObject(playButton);
-			clickEventHandler.addClickableObject(settingsButton);
 			clickEventHandler.addClickableObject(aboutButton);
 		};
 		darken.defineLinear(0, 0.4, "linear", 0.1);
